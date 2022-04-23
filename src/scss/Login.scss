@@ -1,0 +1,76 @@
+@mixin flexDefaultCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.mainLogin {
+
+    margin-top: 2%;
+    height: 77vh;
+
+    .Logo {
+
+        height: 77vh;
+        @include flexDefaultCenter();
+        
+    }
+
+    .LoginRegister {
+
+        @include flexDefaultCenter();
+        flex-direction: column;
+
+
+        .insideLogin {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 77vh;
+            width: 100%;
+
+            h3 {
+                font-size: 3.2rem;
+                letter-spacing: .05rem;
+            }
+
+            .buttonsLogin {
+                margin-top: 4rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                .buttonLoginRegister {
+                    width: 18em;
+                    height: 6vh;
+                    background-color: #324B6A;
+                    border: black 3px solid;
+                    box-shadow: black 3px 3px;
+                    color: azure;
+                    letter-spacing: .08rem;
+                    margin-bottom: 0.4rem;
+                }
+                .optionsNoLogin{
+                    align-self: self-end;
+                    letter-spacing: .05rem;
+                    text-decoration: none;
+                    color: rgb(201, 8, 8);
+                }
+            }
+
+            .formStyle {
+                width: 83%;
+                margin-top: 2%;
+                border: black 3px solid;
+                border-radius: 0;
+                text-align: center;
+            }
+        }
+
+    }
+}
