@@ -28,7 +28,7 @@ const ComboBoxFilter = ({
         return (
           <option
             key={type + optionName}
-            value={optionName}>
+            value={type === "options" ? toKebabCase(optionName) : optionName}>
             {optionName}
           </option>
         );
