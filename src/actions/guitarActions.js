@@ -5,6 +5,8 @@ export const LOADED_FAILURE = "LOADED_FAILURE";
 
 export const SET_GUITAR = "SET_GUITAR";
 
+export const SET_ORDER = "SET_ORDER";
+
 export const loading = () => ({ type: LOADING });
 
 export const loadedFailure = () => ({ type: LOADED_FAILURE });
@@ -33,3 +35,24 @@ export const setGuitarBySpecs =
       dispatch(loadedFailure());
     }
   };
+
+export const setOrder = (payload) => ({
+  type: SET_ORDER,
+  payload,
+});
+
+export const setOrderById = (id) => async (dispatch) => {
+  dispatch(loading());
+  try {
+    await guitarServices.getOrderById(id).then(function (response) {
+      dispatch(
+        setOrder({
+          order: response.data,
+        })
+      );
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch(loadedFailure());
+  }
+};

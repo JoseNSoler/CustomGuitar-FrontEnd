@@ -14,7 +14,15 @@ export const guitarServices = () => {
       url: `/${typeGuitar}/${model}/${brand}/${strings}/${typeStrings}/${tuner}`,
     });
   };
-  return { getGuitarBySpecs };
+
+  const getOrderById = (id) => {
+    return axios({
+      method: "GET",
+      url: `orden/${id}`,
+    });
+  };
+
+  return { getGuitarBySpecs, getOrderById };
 };
 
 export default guitarServices();
