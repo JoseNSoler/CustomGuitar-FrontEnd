@@ -1,20 +1,74 @@
+.singleFilter{
+    border: black solid 3px !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    padding: 2px 12px 2px 2px !important;
+}
+
+.form-select{
+    background-position: right 0.2rem center !important;
+}
+
 .mainProducts {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     h3 {
         font-size: 3.2rem;
         letter-spacing: .05rem;
     }
 
 
-    .optionsDiv{
-        background-color: aqua;
+    .optionsDiv {
+        background-color: rgb(34, 194, 82);
+
 
     }
 
-    .none{
+    .none {
         display: none;
     }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 26vh;
+        justify-content: space-between;
+        align-items: center;
+
+        .rowFilters {
+            background-color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+
+            .col {
+                background-color: beige;
+                margin: 1% 0%;
+                .singleFilter{
+                    border: black solid 3px !important;
+                    border-radius: 0 !important;
+                    width: 100% !important;
+                    select{
+                        outline: 20px;
+                        border: black solid 20px;
+                        width: 200px;
+                    }
+
+                    control{
+                        background-color: antiquewhite;
+                    }
+                }
+            }
+
+            option{
+                border: black solid 20px;
+            }
+        }
+    }
+
+
 }

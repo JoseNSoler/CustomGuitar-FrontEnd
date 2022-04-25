@@ -64,7 +64,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   };
   return (
     <Container>
-      <Row xs={1} md={2} lg={3}>
+      <Row >
 
         <Col>
           <ComboBoxFilter
@@ -83,50 +83,59 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
         </Col>
       </Row>
 
-      <Row>
         {typeGuitar.value ? (
-          <Col className="optionsDiv">
-            <div className="optionsFilter">
+          <Row xs={1} sm={2} md={3} lg={4} className='rowFilters'>
+            <Col >
               <ComboBoxFilter
                 name="Modelo"
                 state={model}
                 setState={setModel}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Marca"
                 state={brand}
                 setState={setBrand}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Número de cuerdas"
                 state={strings}
                 setState={setStrings}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Tipo de cuerdas"
                 state={typeStrings}
                 setState={setTypeStrings}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Afinación"
                 state={tuner}
                 setState={setTuner}
                 type={typeGuitar.value}
               />
-            </div>
-          </Col>
+
+            </Col>
+            </Row>
         ) : (
-          <Col className="none">
+          <Row className="none">
+          <Col >
             <div className="optionsFilter none"></div>
           </Col>
+          </Row>
         )}
-      </Row>
 
-
+        
       <Row>
         <Col>
           <div className="d-grid gap-2">

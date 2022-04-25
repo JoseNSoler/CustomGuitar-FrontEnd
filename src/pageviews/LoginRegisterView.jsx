@@ -10,7 +10,7 @@ export default function LoginRegisterView() {
             <Col className='Logo'>
                 <img
                 src='https://user-images.githubusercontent.com/59320487/164891023-d4ab3a19-797f-4850-8b43-af3d87519f6e.jpeg'
-                style={{width: "105%"}}></img>
+                style={{width: "104%"}}></img>
             </Col>
             <Col className='LoginRegister'>
                 <Login/>
