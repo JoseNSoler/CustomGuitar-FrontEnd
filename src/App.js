@@ -35,7 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginRegisterView />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/order/:id" element={<Order />} />
+          <Route path="/:uid/order/:id" element={<Order />} />
           <Route path="*" element={<h1>404 NotFoundPage</h1>} />
         </Routes>
       </div>
