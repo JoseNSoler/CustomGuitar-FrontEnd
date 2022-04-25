@@ -14,7 +14,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   const [model, setModel] = useState({
     value: "",
     options: {
-      Acústica: ["Concert", "Grand Concert", "Dreadnought"],
+      acustica: ["Concert", "Grand Concert", "Dreadnought"],
       electroacustica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
       electrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
     },
@@ -22,7 +22,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   const [brand, setBrand] = useState({
     value: "",
     options: {
-      Acústica: ["Fender", "Gybson", "Yamaha"],
+      acustica: ["Fender", "Gybson", "Yamaha"],
       electroacustica: ["Fender", "Gybson", "Yamaha"],
       electrica: ["Fender", "Gybson", "Yamaha"],
     },
@@ -30,7 +30,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   const [strings, setStrings] = useState({
     value: "",
     options: {
-      Acústica: [6],
+      acustica: [6],
       electroacustica: [6, 12],
       electrica: [6],
     },
@@ -38,7 +38,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   const [typeStrings, setTypeStrings] = useState({
     value: "",
     options: {
-      Acústica: ["Nylon", "Acero"],
+      acustica: ["Nylon", "Acero"],
       electroacustica: ["Nylon", "Acero"],
       electrica: ["Acero"],
     },
@@ -46,7 +46,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   const [tuner, setTuner] = useState({
     value: "",
     options: {
-      Acústica: ["E", "D"],
+      acustica: ["E", "D"],
       electroacustica: ["E", "D"],
       electrica: ["E", "D", "C"],
     },
@@ -64,7 +64,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
   };
   return (
     <Container>
-      <Row xs={1} md={2} lg={3}>
+      <Row >
 
         <Col>
           <ComboBoxFilter
@@ -83,50 +83,59 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
         </Col>
       </Row>
 
-      <Row>
         {typeGuitar.value ? (
-          <Col className="optionsDiv">
-            <div className="optionsFilter">
+          <Row xs={1} sm={2} md={3} lg={4} className='rowFilters'>
+            <Col >
               <ComboBoxFilter
                 name="Modelo"
                 state={model}
                 setState={setModel}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Marca"
                 state={brand}
                 setState={setBrand}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Número de cuerdas"
                 state={strings}
                 setState={setStrings}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Tipo de cuerdas"
                 state={typeStrings}
                 setState={setTypeStrings}
                 type={typeGuitar.value}
               />
+            </Col>
+            <Col>
               <ComboBoxFilter
                 name="Afinación"
                 state={tuner}
                 setState={setTuner}
                 type={typeGuitar.value}
               />
-            </div>
-          </Col>
+
+            </Col>
+            </Row>
         ) : (
-          <Col className="none">
+          <Row className="none">
+          <Col >
             <div className="optionsFilter none"></div>
           </Col>
+          </Row>
         )}
-      </Row>
 
-
+        
       <Row>
         <Col>
           <div className="d-grid gap-2">

@@ -9,11 +9,11 @@
 .mainLogin {
 
     margin-top: 2%;
-    height: 77vh;
+    height: 100%;
 
     .Logo {
 
-        height: 77vh;
+        height: 85vh;
         @include flexDefaultCenter();
         
     }
@@ -30,7 +30,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 77vh;
+            height: 85vh;
             width: 100%;
 
             h3 {
