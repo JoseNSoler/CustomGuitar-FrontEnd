@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+
 
 const auth = getAuth(fireApp);
 
