@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   error: false,
   guitar: {},
+  order: {},
 };
 
 export default function guitar(state = initialState, action) {
@@ -19,6 +20,13 @@ export default function guitar(state = initialState, action) {
       };
     case typeName.LOADED_FAILURE:
       return { ...state, loading: false, error: true };
+    case typeName.SET_ORDER:
+      return {
+        ...state,
+        order: action.payload.order,
+        loading: false,
+        error: false,
+      };
     default:
       return state;
   }
