@@ -1,54 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Button, Spinner, Container, Row, Col } from "react-bootstrap";
 import { setGuitarBySpecs } from "../actions/guitarActions";
 import ComboBoxFilter from "./ComboBoxFilter";
+import SingleProduct from "./SingleProduct";
 
-const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
+const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
   const [typeGuitar, setTypeGuitar] = useState({
     value: "",
     options: {
-      options: ["Acústica", "Electroacustica", "Electrica"],
+      options: ["Acústica", "Electroacústica", "Electrica"],
     },
   });
   const [model, setModel] = useState({
     value: "",
     options: {
-      acustica: ["Concert", "Grand Concert", "Dreadnought"],
-      electroacustica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
-      electrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
+      Acústica: ["Concert", "Grand Concert", "Dreadnought"],
+      Electroacústica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
+      Electrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
     },
   });
   const [brand, setBrand] = useState({
     value: "",
     options: {
-      acustica: ["Fender", "Gybson", "Yamaha"],
-      electroacustica: ["Fender", "Gybson", "Yamaha"],
-      electrica: ["Fender", "Gybson", "Yamaha"],
+      Acústica: ["FENDER", "GYBSON", "YAMAHA"],
+      Electroacústica: ["FENDER", "GYBSON", "YAMAHA"],
+      Electrica: ["FENDER", "GYBSON", "YAMAHA"],
     },
   });
   const [strings, setStrings] = useState({
     value: "",
     options: {
-      acustica: [6],
-      electroacustica: [6, 12],
-      electrica: [6],
+      Acústica: [6],
+      Electroacústica: [6, 12],
+      Electrica: [6],
     },
   });
   const [typeStrings, setTypeStrings] = useState({
     value: "",
     options: {
-      acustica: ["Nylon", "Acero"],
-      electroacustica: ["Nylon", "Acero"],
-      electrica: ["Acero"],
+      Acústica: ["Nylon", "Acero"],
+      Electroacústica: ["Nylon", "Acero"],
+      Electrica: ["Acero"],
     },
   });
   const [tuner, setTuner] = useState({
     value: "",
     options: {
-      acustica: ["E", "D"],
-      electroacustica: ["E", "D"],
-      electrica: ["E", "D", "C"],
+      Acústica: ["E", "D"],
+      Electroacústica: ["E", "D"],
+      Electrica: ["E", "D", "C"],
     },
   });
 
@@ -62,6 +63,16 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
       tuner.value
     );
   };
+
+  useEffect(() => {
+    console.log(guitarGeneral)
+  
+    return () => {
+      console.log("final")
+    }
+  }, [guitarGeneral])
+  
+
   return (
     <Container>
       <Row >
@@ -156,17 +167,16 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
             </Button>
           </div>
         </Col>
-
-        <Col>
+      </Row>
+      <Row>
+      <Col>
           {loading ? (
             <Spinner
               style={{ position: "absolute", left: "50%", top: "50%" }}
               animation="border"
             />
-          ) : null}
+          ) : guitarGeneral && <SingleProduct SingleProduct={guitarGeneral}></SingleProduct>}
         </Col>
-
-
       </Row>
     </Container>
   );
@@ -175,6 +185,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs }) => {
 const mapStateToProps = (state) => ({
   loading: state.guitar.loading,
   error: state.guitar.error,
+  guitarGeneral: state.guitar.guitar
 });
 
 const mapDispatchToProps = {

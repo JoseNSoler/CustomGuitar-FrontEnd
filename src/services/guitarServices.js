@@ -11,7 +11,7 @@ export const guitarServices = () => {
   ) => {
     return axios({
       method: "GET",
-      url: `/${typeGuitar}/${model}/${brand}/${strings}/${typeStrings}/${tuner}`,
+      url: `guitarra/${typeGuitar}/${model}/${brand}/${strings}/${typeStrings}/${tuner}`,
     });
   };
   return { getGuitarBySpecs };

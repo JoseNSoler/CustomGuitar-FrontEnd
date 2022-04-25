@@ -30,10 +30,7 @@ const ComboBoxFilter = ({
       <option value="">{name.toUpperCase()}</option>
       {state.options[type].map((optionName) => {
         return (
-
-          <option
-            key={type + optionName}
-            value={type === "options" ? toKebabCase(optionName) : optionName}>
+          <option key={type + optionName} value={optionName}>
             {optionName}
           </option>
 
