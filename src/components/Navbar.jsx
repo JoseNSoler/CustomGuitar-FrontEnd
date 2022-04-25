@@ -16,7 +16,7 @@ const Navbar = (props) => {
   };
 
   return (
-    <div className="navbar navbar-dark bg-dark" style={{padding: 0,height: "3.2rem"}}>
+    <div className="navbar navbar-dark bg-dark" style={{ padding: 0, height: "3.2rem" }}>
       <div className="container">
         <Link className="navbar-brand " to="/">
           {" "}
@@ -28,16 +28,29 @@ const Navbar = (props) => {
               Home
             </NavLink>
             {props.firebaseUser !== null ? (
-              <button
-                className="btn btn-dark mr-2"
-                onClick={() => cerrarSesion()}
-              >
-                Cerrar Sesion
-              </button>
+              <>
+                <NavLink className="btn btn-dark mr-2" to="/products">
+                  Guitarras
+                </NavLink>
+                <button
+                  className="btn btn-dark mr-2"
+                  onClick={() => cerrarSesion()}
+                >
+                  Cerrar Sesion
+                </button>
+
+              </>
+
             ) : (
-              <NavLink className="btn btn-dark mr-2" to="/login">
-                Login
-              </NavLink>
+              <>
+                <NavLink className="btn btn-dark mr-2" to="/login">
+                  Login
+                </NavLink>
+                <NavLink className="btn btn-dark mr-2" to="/products">
+                  Guitarras
+                </NavLink>
+              </>
+
             )}
           </div>
         </div>

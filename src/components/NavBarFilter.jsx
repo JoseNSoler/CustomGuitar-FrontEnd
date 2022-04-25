@@ -4,12 +4,22 @@ import { Button, Spinner, Container, Row, Col } from "react-bootstrap";
 import { setGuitarBySpecs } from "../actions/guitarActions";
 import ComboBoxFilter from "./ComboBoxFilter";
 import SingleProduct from "./SingleProduct";
+import { useNavigate } from "react-router-dom";
+import fireApp, { db } from "../firebase/firebase";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+
+const auth = getAuth(fireApp);
 
 const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
   const [typeGuitar, setTypeGuitar] = useState({
     value: "",
     options: {
-      options: ["Acústica", "Electroacústica", "Electrica"],
+      options: ["Acústica", "Electroacústica", "Eléctrica"],
     },
   });
   const [model, setModel] = useState({
@@ -17,7 +27,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
     options: {
       Acústica: ["Concert", "Grand Concert", "Dreadnought"],
       Electroacústica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
-      Electrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
+      Eléctrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
     },
   });
   const [brand, setBrand] = useState({
@@ -25,7 +35,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
     options: {
       Acústica: ["FENDER", "GYBSON", "YAMAHA"],
       Electroacústica: ["FENDER", "GYBSON", "YAMAHA"],
-      Electrica: ["FENDER", "GYBSON", "YAMAHA"],
+      Eléctrica: ["FENDER", "GYBSON", "YAMAHA"],
     },
   });
   const [strings, setStrings] = useState({
@@ -33,7 +43,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
     options: {
       Acústica: [6],
       Electroacústica: [6, 12],
-      Electrica: [6],
+      Eléctrica: [6],
     },
   });
   const [typeStrings, setTypeStrings] = useState({
@@ -41,7 +51,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
     options: {
       Acústica: ["Nylon", "Acero"],
       Electroacústica: ["Nylon", "Acero"],
-      Electrica: ["Acero"],
+      Eléctrica: ["Acero"],
     },
   });
   const [tuner, setTuner] = useState({
@@ -49,9 +59,12 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
     options: {
       Acústica: ["E", "D"],
       Electroacústica: ["E", "D"],
-      Electrica: ["E", "D", "C"],
+      Eléctrica: ["E", "D", "C"],
     },
   });
+
+  const navigate = useNavigate();
+  const [user, setUser] = React.useState(null);
 
   const readyForSearch = () => {
     return (
@@ -66,11 +79,16 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
 
   useEffect(() => {
     console.log(guitarGeneral)
-  
+    if (auth.currentUser) {
+      setUser(auth.currentUser);
+    } else {
+      navigate("/login");
+    }
     return () => {
       console.log("final")
     }
-  }, [guitarGeneral])
+  }, [navigate])
+
   
 
   return (
