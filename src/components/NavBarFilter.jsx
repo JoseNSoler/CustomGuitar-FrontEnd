@@ -6,16 +6,11 @@ import ComboBoxFilter from "./ComboBoxFilter";
 import SingleProduct from "./SingleProduct";
 import { useNavigate } from "react-router-dom";
 import fireApp from "../firebase/firebase";
-import {
-  getAuth,
-} from "firebase/auth";
-
+import { getAuth } from "firebase/auth";
 
 const auth = getAuth(fireApp);
 
-const NavBarFilter = ({ loading, guitarGeneral }) => {
-
-
+const NavBarFilter = ({ loading, guitarGeneral, setGuitarBySpecs }) => {
   const [typeGuitar, setTypeGuitar] = useState({
     value: "",
     options: {
@@ -67,13 +62,14 @@ const NavBarFilter = ({ loading, guitarGeneral }) => {
   const [user, setUser] = React.useState(null);
 
   const readyForSearch = () => {
-    
-    return !!(typeGuitar.value &&
+    return (
+      typeGuitar.value &&
       model.value &&
       brand.value &&
       strings.value &&
       typeStrings.value &&
-      tuner.value);
+      tuner.value
+    );
   };
 
   useEffect(() => {
@@ -82,17 +78,11 @@ const NavBarFilter = ({ loading, guitarGeneral }) => {
     } else {
       navigate("/login");
     }
-    return () => {
-      console.log(user)
-    }
-  }, [navigate])
-
-
+  }, [navigate, user]);
 
   return (
-    <Container className="mainContainer" >
-      <Row >
-
+    <Container className="mainContainer">
+      <Row>
         <Col>
           <ComboBoxFilter
             classType={true}
@@ -112,8 +102,8 @@ const NavBarFilter = ({ loading, guitarGeneral }) => {
       </Row>
 
       {typeGuitar.value ? (
-        <Row xs={1} sm={2} md={3} lg={4} className='rowFilters'>
-          <Col >
+        <Row xs={1} sm={2} md={3} lg={4} className="rowFilters">
+          <Col>
             <ComboBoxFilter
               name="Modelo"
               state={model}
@@ -152,41 +142,34 @@ const NavBarFilter = ({ loading, guitarGeneral }) => {
               setState={setTuner}
               type={typeGuitar.value}
             />
-
           </Col>
         </Row>
       ) : (
         <Row className="none">
-          <Col >
+          <Col>
             <div className="optionsFilter none"></div>
           </Col>
         </Row>
       )}
 
-
       <Row>
         <Col>
-
-            <Button
-              className="buttonBlue"
-              id="searchProducts"
-              disabled={!readyForSearch()}
-              onClick={() => {
-                return (
-                  setGuitarBySpecs(
-                    typeGuitar.value,
-                    strings.value,
-                    typeStrings.value,
-                    model.value,
-                    brand.value,
-                    tuner.value
-                  )
-                  
-                  )
-              }}>
-              Buscar
-            </Button>
-
+          <Button
+            className="buttonBlue"
+            id="searchProducts"
+            disabled={!readyForSearch()}
+            onClick={() => {
+              return setGuitarBySpecs(
+                typeGuitar.value,
+                strings.value,
+                typeStrings.value,
+                model.value,
+                brand.value,
+                tuner.value
+              );
+            }}>
+            Buscar
+          </Button>
         </Col>
       </Row>
       <Row className="resultProduct">
@@ -196,7 +179,13 @@ const NavBarFilter = ({ loading, guitarGeneral }) => {
               style={{ position: "absolute", left: "50%", top: "50%" }}
               animation="border"
             />
-          ) : guitarGeneral && <SingleProduct SingleProduct={guitarGeneral} stateSearch={readyForSearch()}></SingleProduct>}
+          ) : (
+            guitarGeneral && (
+              <SingleProduct
+                SingleProduct={guitarGeneral}
+                stateSearch={readyForSearch()}></SingleProduct>
+            )
+          )}
         </Col>
       </Row>
     </Container>
@@ -206,7 +195,7 @@ const NavBarFilter = ({ loading, guitarGeneral }) => {
 const mapStateToProps = (state) => ({
   loading: state.guitar.loading,
   error: state.guitar.error,
-  guitarGeneral: state.guitar.guitar
+  guitarGeneral: state.guitar.guitar,
 });
 
 const mapDispatchToProps = {
