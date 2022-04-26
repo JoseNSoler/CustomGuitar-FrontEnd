@@ -10,7 +10,7 @@ const OrderInfo = ({ order }) => {
     <div>
       <Card className="orderInfo">
         <Card.Body className="orderTable">
-          <Card.Title>Orden de compra</Card.Title>
+          <Card.Title>{"Orden de compra".toUpperCase()}</Card.Title>
           <Card.Text className="m-0">
             <b>No</b>: {order.id}
           </Card.Text>
@@ -28,25 +28,29 @@ const OrderInfo = ({ order }) => {
               },
               hasLuthier()
                 ? {
-                  Header: "Precio",
-                  columns: [
-                    { Header: "Unitario", accessor: "precioUnitario" },
-                    { Header: "Certificado", accessor: "precioCertificado" },
-                    { Header: "Total", accessor: "precioTotal" },
-                  ],
-                }
+                    Header: "Precio",
+                    columns: [
+                      { Header: "Unitario", accessor: "precioUnitario" },
+                      { Header: "Certificado", accessor: "precioCertificado" },
+                      { Header: "Total", accessor: "precioTotal" },
+                    ],
+                  }
                 : {
-                  Header: "Precio",
-                  columns: [
-                    { Header: "Unitario", accessor: "precioUnitario" },
-                    { Header: "Total", accessor: "precioTotal" },
-                  ],
-                },
+                    Header: "Precio",
+                    columns: [
+                      { Header: "Unitario", accessor: "precioUnitario" },
+                      { Header: "Total", accessor: "precioTotal" },
+                    ],
+                  },
             ]}
             data={order.carrito?.map((cart) => {
               //TODO: Mejorar la forma en como se muestra la información de las guitarras
               return {
-                descripcion: `Guitarra  marca ${cart.guitarra.marca} con ${cart.guitarra.numCuerdas} cuerdas de tipo ${cart.guitarra.tipoCuerda} y afinación ${cart.guitarra.afinacion}`,
+                descripcion: `Guitarra ${cart.guitarra.tipo.toLowerCase()} marca ${
+                  cart.guitarra.marca
+                } con afinación ${cart.guitarra.afinacion} y ${
+                  cart.guitarra.numCuerdas
+                } cuerdas de ${cart.guitarra.tipoCuerda.toLowerCase()}.`,
                 cantidad: cart.cantidad,
                 precioUnitario: `$${cart.guitarra.precio}`,
                 precioCertificado: `$${cart.luthier.precio}`,
