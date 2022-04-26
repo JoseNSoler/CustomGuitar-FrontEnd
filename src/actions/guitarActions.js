@@ -80,7 +80,6 @@ export const createOrderByUID = (UID, luthierBool, product) => (dispatch) => {
         );
       });
   } catch (error) {
-    console.log(error);
     dispatch(loadedFailure());
   }
 };

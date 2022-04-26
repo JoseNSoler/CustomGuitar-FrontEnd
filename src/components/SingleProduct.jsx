@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 
 const auth = getAuth(fireApp);
 
-const SingleProduct = ({ order, guitarGeneral, setGuitar }) => {
+const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
   const [luthier, setLuthier] = useState(false);
 
   const navigate = useNavigate();
@@ -21,11 +21,11 @@ const SingleProduct = ({ order, guitarGeneral, setGuitar }) => {
     navigate(`/${auth.currentUser.uid}/order/${order.id}`);
   };
 
-  useEffect(() => {
-    return () => {
-      setGuitar({});
-    };
-  }, [setGuitar]);
+  //   useEffect(() => {
+  //     return () => {
+  //       setGuitar({});
+  //     };
+  //   }, [setGuitar]);
 
   if (guitarGeneral.length > 0) {
     return (

@@ -30,7 +30,7 @@ export default function guitar(state = initialState, action) {
     case typeName.CREATE_ORDER:
       return {
         ...state,
-        order: { id: action.payload.id },
+        order: { id: action.payload.order.id },
         loading: false,
         error: false,
       };
