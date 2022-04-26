@@ -10,7 +10,10 @@ import LoginRegisterView from "./pageviews/LoginRegisterView";
 import Products from "./pageviews/Products";
 
 import "./scss/App.scss";
+import "./scss/NavBar.scss";
+import "./scss/Footer.scss"
 import Order from "./pageviews/Order";
+import Footer from "./components/Footer";
 
 const auth = getAuth(fireApp);
 
@@ -38,6 +41,7 @@ function App() {
           <Route path="/:uid/order/:id" element={<Order />} />
           <Route path="*" element={<h1>404 NotFoundPage</h1>} />
         </Routes>
+        <Footer></Footer>
       </div>
     </Router>
   ) : (

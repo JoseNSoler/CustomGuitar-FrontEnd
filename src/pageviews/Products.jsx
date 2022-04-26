@@ -7,7 +7,7 @@ import '../scss/SingleProduct.scss'
 export default function Products() {
   return (
     <div className='mainProducts'>
-        <h3>Products</h3>
+        <h3>Guitarras</h3>
         <NavBarFilter />
     </div>
   )

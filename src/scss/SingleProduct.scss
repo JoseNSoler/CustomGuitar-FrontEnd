@@ -1,8 +1,64 @@
-.guitarGeneralMain{
-    background-color: aqua;
-    .guitarImagePrice{
-        img{
-            width: 50%;
+.priceLuthAlone {
+    background-color: aliceblue;
+    letter-spacing: .07rem;
+    padding: .2% 3%;
+    margin-left: 5%;
+    border: black solid 3px !important;
+    border-radius: 0 !important;
+}
+
+.guitarGeneralMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    padding: 1.5rem 0.5rem;
+
+    .guitarImagePrice {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .imageAlone {
+            width: 20rem;
+        }
+
+        .price {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            margin-top: 2%;
+
+            .priceAlone {
+                background-color: aliceblue;
+                letter-spacing: .07rem;
+                padding: 1% 17%;
+                margin-left: 5%;
+                border: black solid 3px !important;
+                border-radius: 0 !important;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .guitarInfoLuthier {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+
+        .form-check-input[type=checkbox] {
+            border-radius: 0 !important;
+            border: solid black 1px;
+            background-color: rgba(250, 235, 215, 0);
+        }
+
+        .form-check-input[type=checkbox]:checked {
+            background-color: #324B6A;
         }
     }
 }

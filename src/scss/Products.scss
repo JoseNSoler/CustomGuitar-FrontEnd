@@ -1,11 +1,17 @@
-.singleFilter{
+.singleFilter {
     border: black solid 3px !important;
     border-radius: 0 !important;
-    width: 100% !important;
-    padding: 2px 12px 2px 2px !important;
+    width: 113% !important;
+    padding: 1px 0 1px 6px !important;
+
+    option {
+        background-color: white;
+    }
+
+
 }
 
-.form-select{
+.form-select {
     background-position: right 0.2rem center !important;
 }
 
@@ -15,17 +21,52 @@
     justify-content: center;
     align-items: center;
 
+    .mainContainer {
+        margin: 0px 0px !important;
+        width: 100% !important;
+        padding: 0 !important;
+
+        .resultProduct {
+            margin: 12px 0;
+            padding-bottom: 4rem;
+        }
+
+    }
+
+    .buttonBlue {
+        width: 12em;
+        height: 4vh;
+        background-color: #324B6A;
+        border: black 3px solid;
+        box-shadow: black 3px 3px;
+        color: azure;
+        letter-spacing: 0.08rem;
+        margin-top: 0.4rem;
+        padding: 0;
+        border-radius: 0 !important;
+    }
+
+    .buttonBlue:disabled {
+        background-color: rgb(36, 88, 160);
+    }
+
+    .buttonBlue:hover {
+        background-color: #3a6599;
+        box-shadow: rgb(92, 92, 92) 3px 3px;
+        border: rgb(92, 92, 92) 3px solid;
+    }
+
+    .buttonBlue:after {
+        background-color: #5488c7;
+    }
+
     h3 {
         font-size: 3.2rem;
         letter-spacing: .05rem;
     }
 
 
-    .optionsDiv {
-        background-color: rgb(34, 194, 82);
-
-
-    }
+    .optionsDiv {}
 
     .none {
         display: none;
@@ -39,32 +80,38 @@
         align-items: center;
 
         .rowFilters {
-            background-color: aqua;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 0 2rem;
+            width: 100%;
 
             .col {
-                background-color: beige;
                 margin: 1% 0%;
-                .singleFilter{
+
+                .singleFilter {
                     border: black solid 3px !important;
                     border-radius: 0 !important;
-                    width: 100% !important;
-                    select{
+                    width: 105% !important;
+                    padding: 1px 0 1px 6px !important;
+
+                    option {
+                        background-color: white;
+                    }
+
+                    select {
                         outline: 20px;
                         border: black solid 20px;
                         width: 200px;
                     }
 
-                    control{
+                    control {
                         background-color: antiquewhite;
                     }
                 }
             }
 
-            option{
+            option {
                 border: black solid 20px;
             }
         }

@@ -7,6 +7,7 @@ const ComboBoxFilter = ({
   state,
   setState,
   type,
+  classType,
   onChangeFunction = () => { },
 }) => {
   const toKebabCase = (str) => {
@@ -16,10 +17,11 @@ const ComboBoxFilter = ({
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   };
+  
 
   return (
     <Form.Select
-      className="singleFilter "
+      className="singleFilter"
       aria-label={toKebabCase(name)}
       onChange={(event) => {
         setState({ value: event.target.value, options: state.options });

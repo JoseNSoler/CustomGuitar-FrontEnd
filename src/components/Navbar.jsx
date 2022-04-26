@@ -16,14 +16,14 @@ const Navbar = (props) => {
   };
 
   return (
-    <div className="navbar navbar-dark bg-dark" style={{ padding: 0, height: "3.2rem" }}>
-      <div className="container">
-        <Link className="navbar-brand " to="/">
+    <div className="navbar navbar-dark navBarGuitar" style={{ padding: 0, height: "3.2rem", backgroundColor: "black" }}>
+      <div className="container" style={{backgroundColor: "black"}}>
+        <Link className="navbar-brand " to="/" style={{backgroundColor: "black"}}>
           {" "}
           Guitarras Custom{" "}
         </Link>
-        <div>
-          <div className="d-flex">
+        <div style={{backgroundColor: "black"}}>
+          <div className="d-flex" style={{backgroundColor: "black"}}>
             <NavLink className="btn btn-dark mr-2" to="/">
               Home
             </NavLink>
