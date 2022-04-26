@@ -8,8 +8,8 @@ const OrderInfo = ({ order }) => {
   }
   return (
     <div>
-      <Card>
-        <Card.Body>
+      <Card className="orderInfo">
+        <Card.Body className="orderTable">
           <Card.Title>Orden de compra</Card.Title>
           <Card.Text className="m-0">
             <b>No</b>: {order.id}
@@ -28,20 +28,20 @@ const OrderInfo = ({ order }) => {
               },
               hasLuthier()
                 ? {
-                    Header: "Precio",
-                    columns: [
-                      { Header: "Unitario", accessor: "precioUnitario" },
-                      { Header: "Certificado", accessor: "precioCertificado" },
-                      { Header: "Total", accessor: "precioTotal" },
-                    ],
-                  }
+                  Header: "Precio",
+                  columns: [
+                    { Header: "Unitario", accessor: "precioUnitario" },
+                    { Header: "Certificado", accessor: "precioCertificado" },
+                    { Header: "Total", accessor: "precioTotal" },
+                  ],
+                }
                 : {
-                    Header: "Precio",
-                    columns: [
-                      { Header: "Unitario", accessor: "precioUnitario" },
-                      { Header: "Total", accessor: "precioTotal" },
-                    ],
-                  },
+                  Header: "Precio",
+                  columns: [
+                    { Header: "Unitario", accessor: "precioUnitario" },
+                    { Header: "Total", accessor: "precioTotal" },
+                  ],
+                },
             ]}
             data={order.carrito?.map((cart) => {
               //TODO: Mejorar la forma en como se muestra la información de las guitarras

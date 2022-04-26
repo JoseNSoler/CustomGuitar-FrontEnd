@@ -1,0 +1,68 @@
+.order {
+    h2{
+        margin: 5% 3%;
+        text-align: center;
+    }
+    .mainOrder {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .orderInfo {
+
+            .orderTable {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: white;
+
+                .h5 {
+                    background-color: white;
+                }
+            }
+
+
+            p,
+            b {
+                background-color: white;
+            }
+
+            table,
+            .table-responsive {
+                background-color: white;
+
+            }
+
+            thead {
+
+
+                th,
+                tr {
+                    background-color: rgb(105, 189, 223);
+                    text-align: center;
+                }
+
+            }
+
+            tbody {
+
+                th,
+                tr,
+                td {
+                    background-color: rgb(255, 255, 255);
+                    justify-self: self-end;
+                    align-items: center;
+                    text-indent: initial;
+                    vertical-align: middle;
+                    text-align: justify;
+                }
+
+            }
+
+        }
+
+    }
+
+}

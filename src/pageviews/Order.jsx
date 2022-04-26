@@ -7,6 +7,8 @@ import OrderInfo from "../components/OrderInfo.jsx";
 import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 
+import "../scss/Order.scss"
+
 function Order({ loading, error, order, setOrderById }) {
   const params = useParams();
   const auth = getAuth(fireApp);
@@ -39,7 +41,7 @@ function Order({ loading, error, order, setOrderById }) {
     if (order.id)
       return (
         <Container>
-          <Row xs={1} md={2}>
+          <Row xs={1} lg={2} className="mainOrder">
             <Col>
               <OrderInfo order={order}></OrderInfo>
             </Col>
@@ -49,16 +51,20 @@ function Order({ loading, error, order, setOrderById }) {
                 Estamos a un paso de que obtengas la guitarra de tus sueños
                 {order.carrito[0].luthier.seleccionado
                   ? " testeada y certificada por el mejor luthier de América."
-                  : "."}
+                  : ". Lamentamos el no uso de nuestro exclusivo servicio de Luthier"}
               </p>
+              <p>
+                Ahora falta el pago
+              </p>
+              
             </Col>
           </Row>
         </Container>
       );
   };
   return (
-    <div>
-      <h2> sasdasadsda</h2>
+    <div className="order">
+      <h2> ORDEN FINAL</h2>
       <div>{renderOrder()}</div>
     </div>
 
