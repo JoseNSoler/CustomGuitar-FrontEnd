@@ -25,7 +25,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
   const [model, setModel] = useState({
     value: "",
     options: {
-      Acústica: ["Concert", "Grand Concert", "Dreadnought"],
+      Acústica: ["Concert", "Grand concert", "Dreadnought"],
       Electroacústica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
       Eléctrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
     },
@@ -33,9 +33,9 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
   const [brand, setBrand] = useState({
     value: "",
     options: {
-      Acústica: ["FENDER", "GYBSON", "YAMAHA"],
-      Electroacústica: ["FENDER", "GYBSON", "YAMAHA"],
-      Eléctrica: ["FENDER", "GYBSON", "YAMAHA"],
+      Acústica: ["Fender", "Gybson", "Yamaha"],
+      Electroacústica: ["Fender", "Gybson", "Yamaha"],
+      Eléctrica: ["Fender", "Gybson", "Yamaha"],
     },
   });
   const [strings, setStrings] = useState({
