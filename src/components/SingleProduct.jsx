@@ -1,40 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Spinner, Container, Row, Col, Form } from "react-bootstrap";
+import React, { useState } from 'react'
+import { Button, Row, Col, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import { createOrderByUID } from "../actions/guitarActions";
 import { useNavigate } from "react-router-dom";
-import fireApp, { db } from "../firebase/firebase";
+import fireApp from "../firebase/firebase";
 import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
+    getAuth
 } from "firebase/auth";
 
 
 
 const auth = getAuth(fireApp);
 
-const SingleProduct = ({ SingleProduct, loading, error, createOrderByUID, guitarGeneral, order, stateSearch }) => {
+const SingleProduct = ({ order, stateSearch }) => {
     const [luthier, setLuthier] = useState(false)
-    console.log(stateSearch);
-    console.log((stateSearch === true));
+
     const navigate = useNavigate();
-
-
-    /*
-    useEffect(() => {
-
-        return () => {
-            console.log(luthier)
-        }
-    }, [luthier])*/
 
     const wasBuyed = (event, product) => {
         event.preventDefault();
-        console.log(auth.currentUser.uid)
+
         createOrderByUID(auth.currentUser.uid, luthier, product)
-        console.log(luthier)
-        console.log(order)
+
         navigate(`/${auth.currentUser.uid}/order/${order.id}`)
     }
 

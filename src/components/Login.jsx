@@ -74,29 +74,29 @@ const Login = () => {
       login();
     }
 
-    console.log(user)
   };
 
   const login = React.useCallback(async () => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      console.log(res);
+      setUser(res)
       setEmail("");
       setPassword("");
       setError(null);
       navigate("/");
-    } catch (error) {
-      console.log(error);
-      if (error.message === "Firebase: Error (auth/user-not-found).") {
+    } catch (errorLogin) {
+
+      if (errorLogin.message === "Firebase: Error (auth/user-not-found).") {
         setError("El email es incorrecto o no está registrado");
       }
-      if (error.message === "Firebase: Error (auth/wrong-password).") {
+      if (errorLogin.message === "Firebase: Error (auth/wrong-password).") {
         setError("El password es incorrecto o el email no está registrado");
       }
     }
   }, [email, password, navigate]);
 
   const registrar = React.useCallback(async () => {
+    console.log(user)
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       await addDoc(collection(db, "usuarios"), {
@@ -110,13 +110,12 @@ const Login = () => {
       setPassword("");
       setError(null);
       navigate("/products");
-      //console.log(res);
-    } catch (error) {
-      console.log(error);
-      if (error.message === "Firebase: Error (auth/invalid-email).") {
+    } catch (registerError) {
+
+      if (registerError.message === "Firebase: Error (auth/invalid-email).") {
         setError("El email no es válido");
       }
-      if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+      if (registerError.message === "Firebase: Error (auth/email-already-in-use).") {
         setError("El email ya está registrado");
       }
     }

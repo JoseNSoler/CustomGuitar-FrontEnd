@@ -1,14 +1,13 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import Select from 'react'
+
 
 const ComboBoxFilter = ({
   name,
   state,
   setState,
   type,
-  classType,
-  onChangeFunction = () => { },
+  onChangeFunction = () => { /* TODO document why this arrow function is empty */  },
 }) => {
   const toKebabCase = (str) => {
     return str

@@ -5,19 +5,17 @@ import { setGuitarBySpecs } from "../actions/guitarActions";
 import ComboBoxFilter from "./ComboBoxFilter";
 import SingleProduct from "./SingleProduct";
 import { useNavigate } from "react-router-dom";
-import fireApp, { db } from "../firebase/firebase";
+import fireApp from "../firebase/firebase";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 
 const auth = getAuth(fireApp);
 
-const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
+const NavBarFilter = ({ loading, guitarGeneral }) => {
 
-  console.log(auth)
+
   const [typeGuitar, setTypeGuitar] = useState({
     value: "",
     options: {
@@ -79,14 +77,13 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
   };
 
   useEffect(() => {
-    console.log(readyForSearch().toString())
     if (auth.currentUser) {
       setUser(auth.currentUser);
     } else {
       navigate("/login");
     }
     return () => {
-      console.log("final")
+      console.log(user)
     }
   }, [navigate])
 

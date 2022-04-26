@@ -31,7 +31,6 @@ export const setGuitarBySpecs =
             );
           });
       } catch (error) {
-        console.log(error);
         dispatch(loadedFailure());
       }
     };
@@ -53,7 +52,6 @@ export const setOrderById = (id) => async (dispatch) => {
       );
     });
   } catch (error) {
-    console.log(error);
     dispatch(loadedFailure());
   }
 };
@@ -63,16 +61,15 @@ export const createOrderByUID = (UID, luthierBool, product) => async (dispatch) 
 
   dispatch(loading());
   try {
-    await guitarServices.createOrderById(UID, luthierBool, product).then(function (response) {
-      console.log(response.data)
+    await guitarServices.createOrderById(UID, luthierBool, product).then(function (response2) {
+
       dispatch(
         setOrder({
-          order: response.data,
+          order: response2.data,
         })
       );
     });
   } catch (error) {
-    console.log(error);
     dispatch(loadedFailure());
   }
 };

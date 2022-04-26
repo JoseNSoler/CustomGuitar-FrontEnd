@@ -3,7 +3,7 @@ import NavBarFilter from '../components/NavBarFilter'
 import '../scss/Products.scss'
 import '../scss/SingleProduct.scss'
 
-//return <NavBarFilter />;
+
 export default function Products() {
   return (
     <div className='mainProducts'>

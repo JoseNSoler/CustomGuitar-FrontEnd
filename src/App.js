@@ -1,8 +1,6 @@
 import React from "react";
-import NavBarFilter from "./components/NavBarFilter";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import fireApp from "./firebase/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
