@@ -1,13 +1,28 @@
 .singleFilter {
     border: black solid 3px !important;
     border-radius: 0 !important;
-    width: 113% !important;
+    width: 100% !important;
     padding: 1px 0 1px 6px !important;
+    font-size: 1rem;
+    background-color: white !important;
+    select{
+        background-color: white !important;
+        
+        option {
+            background-color: white !important;
+            font-size: 0.9rem;
+        }
 
-    option {
-        background-color: white;
     }
+}
 
+select{
+    background-color: white !important;
+    
+    option {
+        background-color: white !important;
+        font-size: 0.9rem;
+    }
 
 }
 
@@ -31,6 +46,24 @@
             padding-bottom: 4rem;
         }
 
+        .singleFilter {
+            border: black solid 3px !important;
+            border-radius: 0 !important;
+            width: 100% !important;
+            padding: 1px 0 1px 6px !important;
+            font-size: 1rem;
+            background-color: white;
+            select{
+                background-color: white !important;
+                
+                option {
+                    background-color: white !important;
+                    font-size: 0.9rem;
+                }
+        
+            }
+        }
+
     }
 
     .buttonBlue {
@@ -39,7 +72,7 @@
         background-color: #324B6A;
         border: black 3px solid;
         box-shadow: black 3px 3px;
-        color: azure;
+        color: azure ;
         letter-spacing: 0.08rem;
         margin-top: 0.4rem;
         padding: 0;
@@ -92,12 +125,17 @@
                 .singleFilter {
                     border: black solid 3px !important;
                     border-radius: 0 !important;
-                    width: 105% !important;
+                    width: 100% !important;
                     padding: 1px 0 1px 6px !important;
-
-                    option {
-                        background-color: white;
-                    }
+                    font-size: 1rem;
+                    background-color: white !important;
+                    select{
+                        background-color: white !important;
+                        
+                        option {
+                            background-color: white !important;
+                            font-size: 0.9rem;
+                    }}
 
                     select {
                         outline: 20px;
@@ -106,7 +144,7 @@
                     }
 
                     control {
-                        background-color: antiquewhite;
+                        background-color: white !important;
                     }
                 }
             }

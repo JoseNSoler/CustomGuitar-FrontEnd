@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row, Spinner, Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setOrderById } from "../actions/guitarActions.js";
@@ -13,12 +13,65 @@ function Order({ loading, error, order, setOrderById }) {
   const params = useParams();
   const auth = getAuth(fireApp);
   const [accessDenied, setAccessDenied] = useState(false);
+  const [validated, setValidated] = useState(false);
 
   useEffect(() => {
     console.log(order)
     params.uid !== auth.currentUser.uid
       ? setAccessDenied(true) : setAccessDenied(false);
-  }, [auth.currentUser.uid, params.id, params.uid, setOrderById]);
+  }, [auth.currentUser.uid, params.id, setOrderById]);
+
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
+  const formPayment = () => {
+    return (
+      <Form noValidate validated={validated} onSubmit={handleSubmit} className="buttonsOrder">
+        <div className="buttonDiv">
+          <Button type="submit" className="button">Enviar</Button>
+        </div>
+
+        <Row>
+          <Form.Group as={Col} controlId="validationCustom01">
+            <Form.Control
+              required
+              type="text"
+              defaultValue=""
+              className="inputPayment"
+            />
+            adjuntar Nro. comprobante de pago
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              Error, se debe colocar un valor en la casilla de comprobante de pago
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+
+
+
+      </Form>
+    )
+  }
+
+  /* Validacion para archivos adjuntos
+  <Form.Group className="mb-3">
+          <Form.Check
+            required
+            label="Reconozco subir informacion valida"
+            feedback="Debe aceptar que esta de acuerdo con el comprobante de pago final y posterior pago"
+            feedbackType="invalid"
+          />
+        </Form.Group>
+  */
+
 
   const renderOrder = () => {
     if (accessDenied) {
@@ -54,9 +107,11 @@ function Order({ loading, error, order, setOrderById }) {
                   : ". Lamentamos el no uso de nuestro exclusivo servicio de Luthier"}
               </p>
               <p>
-                Ahora falta el pago
+                Ahora falta el pago, porfavor realiza una consignacion a nuestra cuenta de ahorros Bancolombia
+                <p>618 863 775 90</p>
+                {formPayment()}
               </p>
-              
+
             </Col>
           </Row>
         </Container>

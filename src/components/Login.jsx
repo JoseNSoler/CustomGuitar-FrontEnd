@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +15,11 @@ const auth = getAuth(fireApp);
 const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirm, setConfirm] = React.useState("");
   const [error, setError] = React.useState(null);
   const [isRegistro, setIsRegistro] = React.useState(false);
   const [user, setUser] = React.useState(null);
+  const [username, setUsername] = React.useState("");
 
   const navigate = useNavigate();
 
@@ -45,6 +48,24 @@ const Login = () => {
       setError("El password debe ser mayor a 7 caracteres");
       return;
     }
+    if (isRegistro) {
+      if (password !== confirm) {
+        setError("El password no coincide, rectifique por favor");
+        return;
+      }
+
+      if (username.length < 3) {
+        setError("El Username debe tener al menos 3 caracteres");
+        return;
+      }
+
+      if (username.length > 30) {
+        setError("El Username debe tener menos de 30 caracteres");
+        return;
+      }
+
+    }
+
     setError(null);
 
     if (isRegistro) {
@@ -82,6 +103,9 @@ const Login = () => {
         email: res.user.email,
         uid: res.user.uid,
       });
+      updateProfile(auth.currentUser, {
+        displayName: username,
+      });
       setEmail("");
       setPassword("");
       setError(null);
@@ -96,23 +120,24 @@ const Login = () => {
         setError("El email ya está registrado");
       }
     }
-  }, [email, password, navigate]);
+  }, [email, password, username, navigate]);
 
   return (
     <>
       <div className="mt-6 insideLogin">
         <h3 className="text-center">
-          {isRegistro ? "Registrarse" : "Iniciar sesion"}
+          {isRegistro ? "Registro de usuarios" : "Login de acceso"}
         </h3>
         <hr />
-        <div className="row justify-content-center" style={{width: "100%"}}>
+        <div className="row justify-content-center" style={{ width: "100%" }}>
           <div className="">
-            <form onSubmit={recibirDatos} style={{justifyContent:"center", alignItems: "center", display: "flex", flexDirection: "column"}}>
+            <form onSubmit={recibirDatos} style={{ justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column" }}>
               {error && <div className="alert alert-danger">{error}</div>}
               <input
                 type="email"
                 className="form-control mb-2 formStyle"
                 placeholder="Ingrese un email"
+                id="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
               />
@@ -120,11 +145,32 @@ const Login = () => {
                 type="password"
                 className="form-control mb-2 formStyle"
                 placeholder="Ingrese un password"
+                id="pass"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
               {isRegistro && (
-                <div>Esta es una prueba</div>
+                <input
+                  type="password"
+                  id="confirm"
+                  className="form-control mb-2 formStyle"
+                  placeholder="Confirme su password"
+                  onChange={(e) => setConfirm(e.target.value)}
+                  value={confirm}
+                />
+
+              )}
+
+              {isRegistro && (
+                <input
+                  type="text"
+                  id="username"
+                  className="form-control formStyle"
+                  placeholder="Escriba su Username"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
+                  required
+                />
               )}
               <div className="buttonsLogin">
                 <button className="buttonLoginRegister" type="submit">
