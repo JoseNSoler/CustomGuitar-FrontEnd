@@ -82,7 +82,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
           onSubmit={handleSubmit}
           className="buttonsOrder">
           <Row>
-            <Form.Group as={Col} controlId="validationCustom01">
+            <Form.Group as={Col} controlId="inputReceipt">
               <Form.Control
                 required
                 type="text"
@@ -100,7 +100,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             </Form.Group>
           </Row>
           <div className="buttonDiv">
-            <Button type="submit" className="button">
+            <Button id="sendReceipt" type="submit" className="button">
               Enviar
             </Button>
           </div>
