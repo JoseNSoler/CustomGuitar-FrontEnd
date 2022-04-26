@@ -16,6 +16,8 @@ import {
 const auth = getAuth(fireApp);
 
 const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
+
+  console.log(auth)
   const [typeGuitar, setTypeGuitar] = useState({
     value: "",
     options: {

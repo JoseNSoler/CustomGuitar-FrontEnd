@@ -13,9 +13,9 @@ function Order({ loading, error, order, setOrderById }) {
   const [accessDenied, setAccessDenied] = useState(false);
 
   useEffect(() => {
-    params.uid === auth.currentUser.uid
-      ? setOrderById(params.id)
-      : setAccessDenied(true);
+    console.log(order)
+    params.uid !== auth.currentUser.uid
+      ? setAccessDenied(true) : setAccessDenied(false);
   }, [auth.currentUser.uid, params.id, params.uid, setOrderById]);
 
   const renderOrder = () => {
@@ -56,7 +56,13 @@ function Order({ loading, error, order, setOrderById }) {
         </Container>
       );
   };
-  return <>{renderOrder()}</>;
+  return (
+    <div>
+      <h2> sasdasadsda</h2>
+      <div>{renderOrder()}</div>
+    </div>
+
+  );
 }
 
 const mapStateToProps = (state) => ({

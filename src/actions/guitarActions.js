@@ -18,23 +18,23 @@ export const setGuitar = (payload) => ({
 
 export const setGuitarBySpecs =
   (typeGuitar, strings, typeStrings, model, brand, tuner) =>
-  async (dispatch) => {
-    dispatch(loading());
-    try {
-      await guitarServices
-        .getGuitarBySpecs(typeGuitar, strings, typeStrings, model, brand, tuner)
-        .then(function (response) {
-          dispatch(
-            setGuitar({
-              guitar: response.data,
-            })
-          );
-        });
-    } catch (error) {
-      console.log(error);
-      dispatch(loadedFailure());
-    }
-  };
+    async (dispatch) => {
+      dispatch(loading());
+      try {
+        await guitarServices
+          .getGuitarBySpecs(typeGuitar, strings, typeStrings, model, brand, tuner)
+          .then(function (response) {
+            dispatch(
+              setGuitar({
+                guitar: response.data,
+              })
+            );
+          });
+      } catch (error) {
+        console.log(error);
+        dispatch(loadedFailure());
+      }
+    };
 
 export const setOrder = (payload) => ({
   type: SET_ORDER,
@@ -45,6 +45,26 @@ export const setOrderById = (id) => async (dispatch) => {
   dispatch(loading());
   try {
     await guitarServices.getOrderById(id).then(function (response) {
+      
+      dispatch(
+        setOrder({
+          order: response.data,
+        })
+      );
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch(loadedFailure());
+  }
+};
+
+
+export const createOrderByUID = (UID, luthierBool, product) => async (dispatch) => {
+
+  dispatch(loading());
+  try {
+    await guitarServices.createOrderById(UID, luthierBool, product).then(function (response) {
+      console.log(response.data)
       dispatch(
         setOrder({
           order: response.data,

@@ -46,9 +46,9 @@ const OrderInfo = ({ order }) => {
             data={order.carrito?.map((cart) => {
               //TODO: Mejorar la forma en como se muestra la información de las guitarras
               return {
-                descripcion: `Guitarra ${cart.articulo.tipo} marca ${cart.articulo.marca} con ${cart.articulo.numCuerdas} cuerdas de tipo ${cart.articulo.tipoCuerda} y afinación ${cart.articulo.afinacion}`,
+                descripcion: `Guitarra  marca ${cart.guitarra.marca} con ${cart.guitarra.numCuerdas} cuerdas de tipo ${cart.guitarra.tipoCuerda} y afinación ${cart.guitarra.afinacion}`,
                 cantidad: cart.cantidad,
-                precioUnitario: `$${cart.articulo.precio}`,
+                precioUnitario: `$${cart.guitarra.precio}`,
                 precioCertificado: `$${cart.luthier.precio}`,
                 precioTotal: `$${cart.total}`,
               };

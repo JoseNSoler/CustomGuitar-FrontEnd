@@ -22,7 +22,16 @@ export const guitarServices = () => {
     });
   };
 
-  return { getGuitarBySpecs, getOrderById };
+  const createOrderById = (UID, luthierBool, product) => {
+    return axios({
+      method: "POST",
+      url: `orden/crear/${luthierBool.toString()}/${UID}`,
+      data: product
+
+    });
+  }
+
+  return { getGuitarBySpecs, getOrderById, createOrderById };
 };
 
 export default guitarServices();

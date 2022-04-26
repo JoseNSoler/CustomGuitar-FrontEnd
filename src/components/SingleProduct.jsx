@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Spinner, Container, Row, Col, Form } from "react-bootstrap";
+import { connect } from "react-redux";
+import { createOrderByUID } from "../actions/guitarActions";
+import { useNavigate } from "react-router-dom";
+import fireApp, { db } from "../firebase/firebase";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 
-const SingleProduct = ({ SingleProduct }) => {
+
+const auth = getAuth(fireApp);
+
+const SingleProduct = ({ SingleProduct, loading, error, createOrderByUID, guitarGeneral, order }) => {
     const [luthier, setLuthier] = useState(false)
     console.log(SingleProduct);
+    const navigate = useNavigate();
 
     /*
     useEffect(() => {
@@ -16,13 +29,21 @@ const SingleProduct = ({ SingleProduct }) => {
 
     const wasBuyed = (event, product) => {
         event.preventDefault();
+        console.log(auth.currentUser.uid)
+        createOrderByUID(auth.currentUser.uid, luthier, product)
         console.log(luthier)
+        console.log(order)
+        navigate(`/${auth.currentUser.uid}/order/${order.id}`)
     }
 
 
     if (SingleProduct.length) {
         return (
+            
             <div>
+                <div>
+                    {order ? <>{order.fecha} asdas</> : <>nonono</>}
+                </div>
                 {SingleProduct.map((product) => {
                     return (
                         <Row xs={1} md={2} className='guitarGeneralMain'>
@@ -81,7 +102,20 @@ const SingleProduct = ({ SingleProduct }) => {
     )
 }
 
-export default SingleProduct
+const mapStateToProps = (state) => ({
+    loading: state.guitar.loading,
+    error: state.guitar.error,
+    guitarGeneral: state.guitar.guitar,
+    order: state.guitar.order
+});
+  
+const mapDispatchToProps = {
+    createOrderByUID,
+};
+  
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
+
+
 
 
 /*
