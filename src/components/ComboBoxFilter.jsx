@@ -22,6 +22,7 @@ const ComboBoxFilter = ({
   return (
     <Form.Select
       className="singleFilter"
+      id="selectOptions"
       aria-label={toKebabCase(name)}
       onChange={(event) => {
         setState({ value: event.target.value, options: state.options });

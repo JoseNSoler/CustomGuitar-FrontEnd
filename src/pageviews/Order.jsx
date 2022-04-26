@@ -9,7 +9,7 @@ import { getAuth } from "firebase/auth";
 
 import "../scss/Order.scss"
 
-function Order({ loading, error, order, setOrderById }) {
+function Order({ loading, error, order }) {
   const params = useParams();
   const auth = getAuth(fireApp);
   const [accessDenied, setAccessDenied] = useState(false);
@@ -36,13 +36,14 @@ function Order({ loading, error, order, setOrderById }) {
     return (
       <Form noValidate validated={validated} onSubmit={handleSubmit} className="buttonsOrder">
         <div className="buttonDiv">
-          <Button type="submit" className="button">Enviar</Button>
+          <Button type="submit" className="button" id="formButton">Enviar</Button>
         </div>
 
         <Row>
           <Form.Group as={Col} controlId="validationCustom01">
             <Form.Control
               required
+              id="formPayment"
               type="text"
               defaultValue=""
               className="inputPayment"
@@ -60,18 +61,6 @@ function Order({ loading, error, order, setOrderById }) {
       </Form>
     )
   }
-
-  /* Validacion para archivos adjuntos
-  <Form.Group className="mb-3">
-          <Form.Check
-            required
-            label="Reconozco subir informacion valida"
-            feedback="Debe aceptar que esta de acuerdo con el comprobante de pago final y posterior pago"
-            feedbackType="invalid"
-          />
-        </Form.Group>
-  */
-
 
   const renderOrder = () => {
     if (accessDenied) {

@@ -8,7 +8,7 @@ const OrderInfo = ({ order }) => {
   }
   return (
     <div>
-      <Card className="orderInfo">
+      <Card className="orderInfo" id="cardOrderInfoID">
         <Card.Body className="orderTable">
           <Card.Title>Orden de compra</Card.Title>
           <Card.Text className="m-0">
@@ -55,7 +55,7 @@ const OrderInfo = ({ order }) => {
             })}
           />
           <Card.Text>
-            <b>Costo total</b>: ${order.total}
+            <b id="totalCostOrder">Costo total</b>: ${order.total}
           </Card.Text>
         </Card.Body>
       </Card>

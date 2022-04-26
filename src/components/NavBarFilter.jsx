@@ -27,7 +27,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
   const [model, setModel] = useState({
     value: "",
     options: {
-      Acústica: ["Concert", "Grand concert", "Dreadnought"],
+      Acústica: ["Concert", "Grand Concert", "Dreadnought"],
       Electroacústica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
       Eléctrica: ["Telecaster", "Estratocaster", "SG", "Less paul"],
     },
@@ -172,6 +172,7 @@ const NavBarFilter = ({ loading, error, setGuitarBySpecs, guitarGeneral }) => {
 
             <Button
               className="buttonBlue"
+              id="searchProducts"
               disabled={!readyForSearch()}
               onClick={() => {
                 return (

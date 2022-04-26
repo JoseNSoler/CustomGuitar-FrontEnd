@@ -132,7 +132,7 @@ const Login = () => {
         <div className="row justify-content-center" style={{ width: "100%" }}>
           <div className="">
             <form onSubmit={recibirDatos} style={{ justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column" }}>
-              {error && <div className="alert alert-danger">{error}</div>}
+              {error && <div className="alert alert-danger" id="errorForm">{error}</div>}
               <input
                 type="email"
                 className="form-control mb-2 formStyle"
@@ -173,13 +173,14 @@ const Login = () => {
                 />
               )}
               <div className="buttonsLogin">
-                <button className="buttonLoginRegister" type="submit">
+                <button className="buttonLoginRegister" type="submit" id="buttonLoginRegister">
                   {isRegistro ? "Registrarse" : "Iniciar sesion"}
                 </button>
                 <a
                   className="optionsNoLogin"
                   onClick={() => setIsRegistro(!isRegistro)}
                   type="button"
+                  id="optionRegisterLogin"
 
                 >
                   {isRegistro ? "Ya estoy registrado" : "No tengo una cuenta"}

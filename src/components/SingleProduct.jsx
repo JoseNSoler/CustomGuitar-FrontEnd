@@ -45,12 +45,12 @@ const SingleProduct = ({ SingleProduct, loading, error, createOrderByUID, guitar
                 {SingleProduct.map((product) => {
                     return (
                         <Row xs={1} md={2} className='guitarGeneralMain'>
-                            <Col className='guitarImagePrice'>
+                            <Col className='guitarImagePrice' id="guitarImagePriceID">
 
                                 <h4>Guitarra de tipo {product.tipo}, Marca {product.marca} modelo {product.modelo}</h4>
 
                                 <div className='imageAlone'>
-                                    <img src={product.imagen}></img>
+                                    <img src={product.imagen} alt='productImage'></img>
                                 </div>
 
                                 <div className='price'>
@@ -58,7 +58,7 @@ const SingleProduct = ({ SingleProduct, loading, error, createOrderByUID, guitar
                                 </div>
 
                             </Col>
-                            <Col className='guitarInfoLuthier'>
+                            <Col className='guitarInfoLuthier' id="guitarInfoLuthierID">
                                 <h5>Afinacion: {product.afinacion}</h5>
                                 <div>
                                     Hermosa guitarra con un numero de cuerdas de {product.numCuerdas} de tipo {product.tipoCuerda}
@@ -82,15 +82,15 @@ const SingleProduct = ({ SingleProduct, loading, error, createOrderByUID, guitar
                                             type="checkbox"
                                             id="checkbox"
                                             label="Uso de luthier"
-                                            onChange={(event) => { setLuthier(!luthier) }}
+                                            onChange={() => { setLuthier(!luthier) }}
                                         />
-                                        <p className='priceLuthAlone'>
+                                        <p className='priceLuthAlone' id="productPriceID">
                                             250.000
                                         </p>
 
                                     </div>
 
-                                    <Button variant="primary" type="submit" className='buttonBlue'>
+                                    <Button variant="primary" type="submit" className='buttonBlue' id="buyProduct">
                                         COMPRAR!!
                                     </Button>
                                 </Form>
