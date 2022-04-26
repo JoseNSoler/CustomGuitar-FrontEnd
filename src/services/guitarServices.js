@@ -18,7 +18,7 @@ export const guitarServices = () => {
   const getOrderById = (id) => {
     return axios({
       method: "GET",
-      url: `orden/${id}`,
+      url: `orden/id/${id}`,
     });
   };
 
@@ -26,12 +26,23 @@ export const guitarServices = () => {
     return axios({
       method: "POST",
       url: `orden/crear/${luthierBool.toString()}/${UID}`,
-      data: product
-
+      data: product,
     });
-  }
+  };
 
-  return { getGuitarBySpecs, getOrderById, createOrderById };
+  const updateReceiptOrder = (id, uID, receipt) => {
+    return axios({
+      method: "GET",
+      url: `orden/actualizar/${id}/${uID}/${receipt}`,
+    });
+  };
+
+  return {
+    getGuitarBySpecs,
+    getOrderById,
+    createOrderById,
+    updateReceiptOrder,
+  };
 };
 
 export default guitarServices();
