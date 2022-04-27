@@ -9,13 +9,13 @@ import SingleProduct from "../components/SingleProduct";
 
 const Products = ({ loading, setGuitarBySpecs }) => {
   const [typeGuitar, setTypeGuitar] = useState({
-    value: "Acústica",
+    value: "",
     options: {
       options: ["Acústica", "Electroacústica", "Eléctrica"],
     },
   });
   const [model, setModel] = useState({
-    value: "Concert",
+    value: "",
     options: {
       Acústica: ["Concert", "Grand Concert", "Dreadnought"],
       Electroacústica: ["Auditorium", "Jumbo", "Ovation", "Folk"],
@@ -23,7 +23,7 @@ const Products = ({ loading, setGuitarBySpecs }) => {
     },
   });
   const [brand, setBrand] = useState({
-    value: "Fender",
+    value: "",
     options: {
       Acústica: ["Fender", "Gybson", "Yamaha"],
       Electroacústica: ["Fender", "Gybson", "Yamaha"],
@@ -31,7 +31,7 @@ const Products = ({ loading, setGuitarBySpecs }) => {
     },
   });
   const [strings, setStrings] = useState({
-    value: "6",
+    value: "",
     options: {
       Acústica: [6],
       Electroacústica: [6, 12],
@@ -39,7 +39,7 @@ const Products = ({ loading, setGuitarBySpecs }) => {
     },
   });
   const [typeStrings, setTypeStrings] = useState({
-    value: "Nylon",
+    value: "",
     options: {
       Acústica: ["Nylon", "Acero"],
       Electroacústica: ["Nylon", "Acero"],
@@ -47,7 +47,7 @@ const Products = ({ loading, setGuitarBySpecs }) => {
     },
   });
   const [tuner, setTuner] = useState({
-    value: "E",
+    value: "",
     options: {
       Acústica: ["E", "D"],
       Electroacústica: ["E", "D"],
