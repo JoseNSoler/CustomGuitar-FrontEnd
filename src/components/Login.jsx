@@ -17,7 +17,6 @@ const Login = () => {
   const [confirm, setConfirm] = React.useState("");
   const [error, setError] = React.useState(null);
   const [isRegistro, setIsRegistro] = React.useState(false);
-  const [user, setUser] = React.useState(null);
   const [username, setUsername] = React.useState("");
 
   const navigate = useNavigate();
@@ -79,22 +78,22 @@ const Login = () => {
     } else {
       login();
     }
-    console.log(user.email);
+    
   };
 
-  const login = React.useCallback(() => {
+  const login = React.useCallback(async () => {
     try {
-      const res = signInWithEmailAndPassword(auth, email, password);
-      setUser(res);
+      await signInWithEmailAndPassword(auth, email, password);      
       setEmail("");
       setPassword("");
       setError(null);
       navigate("/");
-    } catch (errorLogin) {
-      if (errorLogin.message === "Firebase: Error (auth/user-not-found).") {
+    } catch (error) {
+      console.log("error.FirebaseError")
+      if (error.message === "Firebase: Error (auth/user-not-found).") {
         setError("El email es incorrecto o no está registrado");
       }
-      if (errorLogin.message === "Firebase: Error (auth/wrong-password).") {
+      if (error.message === "Firebase: Error (auth/wrong-password).") {
         setError("El password es incorrecto o el email no está registrado");
       }
     }
@@ -114,12 +113,12 @@ const Login = () => {
       setPassword("");
       setError(null);
       navigate("/products");
-    } catch (registerError) {
-      if (registerError.message === "Firebase: Error (auth/invalid-email).") {
+    } catch (error) {
+      if (error.message === "Firebase: Error (auth/invalid-email).") {
         setError("El email no es válido");
       }
       if (
-        registerError.message === "Firebase: Error (auth/email-already-in-use)."
+        error.message === "Firebase: Error (auth/email-already-in-use)."
       ) {
         setError("El email ya está registrado");
       }
@@ -193,13 +192,14 @@ const Login = () => {
                   id="buttonLoginRegister">
                   {isRegistro ? "Registrarse" : "Iniciar sesión"}
                 </button>
-                <a
+                <button
                   className="optionsNoLogin"
                   onClick={() => setIsRegistro(!isRegistro)}
+                  style={{border: '0px'}}
                   type="button"
                   id="optionRegisterLogin">
                   {isRegistro ? "Ya estoy registrado" : "No tengo una cuenta"}
-                </a>
+                </button>
               </div>
             </form>
           </div>
