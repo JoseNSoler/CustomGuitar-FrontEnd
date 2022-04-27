@@ -16,6 +16,7 @@ import "./scss/NavBar.scss";
 import "./scss/Footer.scss";
 import Order from "./pageviews/Order";
 import Footer from "./components/Footer";
+import { Container, Spinner } from "react-bootstrap";
 
 const auth = getAuth(fireApp);
 
@@ -67,15 +68,13 @@ function App() {
       </div>
     </Router>
   ) : (
-    <center>
-      <button className="btn btn-primary" type="button" disabled>
-        <span
-          className="spinner-grow spinner-grow-sm"
-          role="status"
-          aria-hidden="true"></span>
-        Loading...
-      </button>
-    </center>
+    <Container>
+      <Spinner
+        animation="grow"
+        variant="dark"
+        style={{ position: "absolute", left: "50%", top: "50%" }}
+      />
+    </Container>
   );
 }
 

@@ -177,13 +177,14 @@ const Login = () => {
                   id="buttonLoginRegister">
                   {isRegistro ? "Registrarse" : "Iniciar sesión"}
                 </button>
-                <a
+                <button
+                  style={{ border: "0px" }}
                   className="optionsNoLogin"
                   onClick={() => setIsRegistro(!isRegistro)}
                   type="button"
                   id="optionRegisterLogin">
                   {isRegistro ? "Ya estoy registrado" : "No tengo una cuenta"}
-                </a>
+                </button>
               </div>
             </form>
           </div>
