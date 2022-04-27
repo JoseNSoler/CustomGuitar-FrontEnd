@@ -39,6 +39,22 @@ const Login = () => {
       setError("El password no debe ser menor a 8 caracteres");
       return;
     }
+
+    if (!password.match(/[A-z]/)) {
+      setError("El password debe contener al menos una letra");
+      return;
+    }
+
+    if (!password.match(/[A-Z]/)) {
+      setError("El password debe contener al menos una mayúscula");
+      return;
+    }
+
+    if (!password.match(/\d/)) {
+      setError("El password debe contener al menos un número");
+      return;
+    }
+
     if (isRegistro) {
       if (password !== confirm) {
         setError("El password no coincide, rectifique por favor");
@@ -84,7 +100,6 @@ const Login = () => {
   }, [email, password, navigate]);
 
   const registrar = React.useCallback(async () => {
-    console.log(user);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       await addDoc(collection(db, "usuarios"), {
@@ -108,7 +123,7 @@ const Login = () => {
         setError("El email ya está registrado");
       }
     }
-  }, [user, email, password, username, navigate]);
+  }, [email, password, username, navigate]);
 
   return (
     <>

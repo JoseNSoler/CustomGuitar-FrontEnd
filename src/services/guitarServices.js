@@ -23,7 +23,6 @@ export const guitarServices = () => {
   };
 
   const createOrderById = (UID, luthierBool, product) => {
-    console.log("service: " + UID);
     return axios({
       method: "POST",
       url: `orden/crear/${luthierBool.toString()}/${UID}`,
