@@ -67,22 +67,24 @@ export const setOrderById = (id) => async (dispatch) => {
   }
 };
 
-export const createOrderByUID = (UID, luthierBool, product) => (dispatch) => {
-  dispatch(loading());
-  try {
-    guitarServices
-      .createOrderById(UID, luthierBool, product)
-      .then(function (response) {
-        dispatch(
-          createOrder({
-            order: response.data,
-          })
-        );
-      });
-  } catch (error) {
-    dispatch(loadedFailure());
-  }
-};
+export const createOrderByUID =
+  (UID, luthierBool, product) => async (dispatch) => {
+    dispatch(loading());
+    console.log("action: " + UID);
+    try {
+      await guitarServices
+        .createOrderById(UID, luthierBool, product)
+        .then(function (response) {
+          dispatch(
+            createOrder({
+              order: response.data,
+            })
+          );
+        });
+    } catch (error) {
+      dispatch(loadedFailure());
+    }
+  };
 
 export const updateOrderById = (id, uID, receipt) => async (dispatch) => {
   dispatch(loading());

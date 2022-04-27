@@ -44,7 +44,6 @@ const OrderInfo = ({ order }) => {
                   },
             ]}
             data={order.carrito?.map((cart) => {
-              //TODO: Mejorar la forma en como se muestra la información de las guitarras
               return {
                 descripcion: `Guitarra ${cart.guitarra.tipo.toLowerCase()} marca ${
                   cart.guitarra.marca

@@ -3,11 +3,11 @@ import * as typeName from "../actions/guitarActions";
 const initialState = {
   loading: false,
   error: false,
-  guitar: {},
-  order: {},
+  guitar: [],
+  order: { created: false },
 };
 
-export default function guitar(state = initialState, action) {
+export default function guitarReducer(state = initialState, action) {
   switch (action.type) {
     case typeName.LOADING:
       return { ...state, loading: true };
@@ -30,7 +30,7 @@ export default function guitar(state = initialState, action) {
     case typeName.CREATE_ORDER:
       return {
         ...state,
-        order: { id: action.payload.order.id },
+        order: { id: action.payload.order.id, created: true },
         loading: false,
         error: false,
       };

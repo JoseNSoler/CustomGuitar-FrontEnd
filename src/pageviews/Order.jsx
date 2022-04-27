@@ -10,7 +10,10 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setOrderById, updateOrderById } from "../actions/guitarActions.js";
+import {
+  setOrderById as actionSetOrderById,
+  updateOrderById as actionUpdateOrderById,
+} from "../actions/guitarActions.js";
 import OrderInfo from "../components/OrderInfo.jsx";
 import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
@@ -137,8 +140,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     if (error) {
       return <h1>408 Request Timeout</h1>;
     }
-
-    if (order.id)
+    if (order.carrito?.length)
       return (
         <Container>
           <div className="header">
@@ -190,5 +192,9 @@ const mapStateToProps = (state) => ({
   order: state.guitar.order,
 });
 
-const mapDispatchToProps = { setOrderById, updateOrderById };
+const mapDispatchToProps = {
+  setOrderById: actionSetOrderById,
+  updateOrderById: actionUpdateOrderById,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(Order);

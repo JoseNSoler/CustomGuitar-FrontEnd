@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import guitar from "./guitarReducer";
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   guitar: guitar,
 });
 
-export default reducer;
+export default rootReducer;

@@ -1,6 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import fireApp from "./firebase/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -9,7 +13,7 @@ import Products from "./pageviews/Products";
 
 import "./scss/App.scss";
 import "./scss/NavBar.scss";
-import "./scss/Footer.scss"
+import "./scss/Footer.scss";
 import Order from "./pageviews/Order";
 import Footer from "./components/Footer";
 
@@ -33,7 +37,7 @@ function App() {
       <div className="App">
         <Navbar firebaseUser={firebaseUser} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/products" />} />
           <Route path="/login" element={<LoginRegisterView />} />
           <Route path="/products" element={<Products />} />
           <Route path="/:uid/order/:id" element={<Order />} />
