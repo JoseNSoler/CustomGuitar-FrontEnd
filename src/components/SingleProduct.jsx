@@ -28,7 +28,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
 
   if (guitarGeneral.length > 0) {
     return (
-      <div>
+      <div className="pb-4">
         {guitarGeneral.map((product, index) => {
           return (
             <Row key={index} xs={1} md={2} className="guitarGeneralMain">
@@ -43,21 +43,18 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
                 </div>
 
                 <div className="price">
-                  Precio <p className="priceAlone">{product.precio}</p>
+                  Precio <p className="priceAlone">{`$${product.precio}`}</p>
                 </div>
               </Col>
               <Col className="guitarInfoLuthier" id="guitarInfoLuthierID">
                 <p>
                   <b>Especificaciones</b>
                 </p>
-                <p>
-                  Afinacion: {product.afinacion}
-                  <br />
-                  Número de cuerdas: {product.numCuerdas}
-                  <br />
-                  Tipo de cuerdas: {product.tipoCuerda}
-                  <br />
-                </p>
+                <ul>
+                  <li> Afinacion: {product.afinacion}</li>
+                  <li> Número de cuerdas: {product.numCuerdas}</li>
+                  <li> Tipo de cuerdas: {product.tipoCuerda}</li>
+                </ul>
                 <div className="mt-2">
                   <p>
                     <b>Certificación</b>
@@ -92,7 +89,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
                       }}
                     />
                     <p className="priceLuthAlone" id="productPriceID">
-                      250.000
+                      $250000
                     </p>
                   </div>
 

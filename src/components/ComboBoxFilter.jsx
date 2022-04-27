@@ -1,13 +1,12 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-
 const ComboBoxFilter = ({
   name,
   state,
   setState,
   type,
-  onChangeFunction = () => { /* TODO document why this arrow function is empty */  },
+  onChangeFunction = () => {},
 }) => {
   const toKebabCase = (str) => {
     return str
@@ -16,7 +15,6 @@ const ComboBoxFilter = ({
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   };
-  
 
   return (
     <Form.Select
@@ -26,20 +24,15 @@ const ComboBoxFilter = ({
       onChange={(event) => {
         setState({ value: event.target.value, options: state.options });
         onChangeFunction();
-      }}
-    >
-
+      }}>
       <option value="">{name.toUpperCase()}</option>
       {state.options[type].map((optionName) => {
         return (
           <option key={type + optionName} value={optionName}>
             {optionName}
           </option>
-
         );
       })}
-
-
     </Form.Select>
   );
 };

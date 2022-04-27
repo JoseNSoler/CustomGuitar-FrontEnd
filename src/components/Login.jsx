@@ -9,7 +9,6 @@ import {
 import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-
 const auth = getAuth(fireApp);
 
 const Login = () => {
@@ -63,7 +62,6 @@ const Login = () => {
         setError("El Username debe tener menos de 30 caracteres");
         return;
       }
-
     }
 
     setError(null);
@@ -73,19 +71,17 @@ const Login = () => {
     } else {
       login();
     }
-
   };
 
   const login = React.useCallback(async () => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      setUser(res)
+      setUser(res);
       setEmail("");
       setPassword("");
       setError(null);
       navigate("/");
     } catch (errorLogin) {
-
       if (errorLogin.message === "Firebase: Error (auth/user-not-found).") {
         setError("El email es incorrecto o no está registrado");
       }
@@ -96,7 +92,7 @@ const Login = () => {
   }, [email, password, navigate]);
 
   const registrar = React.useCallback(async () => {
-    console.log(user)
+    console.log(user);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       await addDoc(collection(db, "usuarios"), {
@@ -111,11 +107,12 @@ const Login = () => {
       setError(null);
       navigate("/products");
     } catch (registerError) {
-
       if (registerError.message === "Firebase: Error (auth/invalid-email).") {
         setError("El email no es válido");
       }
-      if (registerError.message === "Firebase: Error (auth/email-already-in-use).") {
+      if (
+        registerError.message === "Firebase: Error (auth/email-already-in-use)."
+      ) {
         setError("El email ya está registrado");
       }
     }
@@ -130,8 +127,19 @@ const Login = () => {
         <hr />
         <div className="row justify-content-center" style={{ width: "100%" }}>
           <div className="">
-            <form onSubmit={recibirDatos} style={{ justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column" }}>
-              {error && <div className="alert alert-danger" id="errorForm">{error}</div>}
+            <form
+              onSubmit={recibirDatos}
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}>
+              {error && (
+                <div className="alert alert-danger" id="errorForm">
+                  {error}
+                </div>
+              )}
               <input
                 type="email"
                 className="form-control mb-2 formStyle"
@@ -157,7 +165,6 @@ const Login = () => {
                   onChange={(e) => setConfirm(e.target.value)}
                   value={confirm}
                 />
-
               )}
 
               {isRegistro && (
@@ -172,16 +179,17 @@ const Login = () => {
                 />
               )}
               <div className="buttonsLogin">
-                <button className="buttonLoginRegister" type="submit" id="buttonLoginRegister">
-                  {isRegistro ? "Registrarse" : "Iniciar sesion"}
+                <button
+                  className="buttonLoginRegister"
+                  type="submit"
+                  id="buttonLoginRegister">
+                  {isRegistro ? "Registrarse" : "Iniciar sesión"}
                 </button>
                 <a
                   className="optionsNoLogin"
                   onClick={() => setIsRegistro(!isRegistro)}
                   type="button"
-                  id="optionRegisterLogin"
-
-                >
+                  id="optionRegisterLogin">
                   {isRegistro ? "Ya estoy registrado" : "No tengo una cuenta"}
                 </a>
               </div>
