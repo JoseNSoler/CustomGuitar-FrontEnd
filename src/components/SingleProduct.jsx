@@ -28,7 +28,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
 
   if (guitarGeneral.length > 0) {
     return (
-      <div className="pb-4">
+      <div className="pb-4" style={{margin: "0 .4rem"}}>
         {guitarGeneral.map((product, index) => {
           return (
             <Row key={index} xs={1} md={2} className="guitarGeneralMain">

@@ -36,7 +36,7 @@ const Login = () => {
     }
 
     if (password.length < 8) {
-      setError("El password debe ser mayor a 7 caracteres");
+      setError("El password no debe ser menor a 8 caracteres");
       return;
     }
     if (isRegistro) {

@@ -74,8 +74,8 @@ const Products = ({ loading, setGuitarBySpecs }) => {
       </div>
 
       <Container>
-        <Row xs={1} sm={2} md={3} lg={4} className="rowFilters">
-          <Col>
+        <Row>
+        <Col style={{width: "13rem"}}>
             <ComboBoxFilter
               classType={true}
               name="Tipo de guitarra"
@@ -91,6 +91,9 @@ const Products = ({ loading, setGuitarBySpecs }) => {
               }}
             />
           </Col>
+        </Row>
+        <Row xs={1} sm={2} md={3} lg={4} className="rowFilters">
+          
 
           {typeGuitar.value && (
             <>
@@ -163,7 +166,7 @@ const Products = ({ loading, setGuitarBySpecs }) => {
         <Col>
           {!loading && showresult && (
             <>
-              <h2>Resultados</h2>
+              <h2 style={{textAlign: "center", marginTop: "1.5rem"}}>Resultados</h2>
               <SingleProduct></SingleProduct>
             </>
           )}
