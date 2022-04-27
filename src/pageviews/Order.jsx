@@ -47,10 +47,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     }
     return true;
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
+  const handleSubmit = () => {
     if (isValidReceipt()) {
       setValidated(true);
       updateOrderById(params.id, auth.currentUser.uid, receipt);
@@ -79,11 +76,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     return (
       <>
         {renderAlerts()}
-        <Form
-          noValidate
-          validated={validated}
-          onSubmit={handleSubmit}
-          className="buttonsOrder">
+        <Form noValidate validated={validated} className="buttonsOrder">
           <Row>
             <Form.Group as={Col} controlId="inputReceipt">
               <Form.Control
@@ -102,7 +95,11 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
               />
             </Form.Group>
           </Row>
-          <div className="buttonDiv">
+          <div
+            className="buttonDiv"
+            onClick={() => {
+              handleSubmit();
+            }}>
             <Button id="sendReceipt" type="submit" className="button">
               Enviar
             </Button>
