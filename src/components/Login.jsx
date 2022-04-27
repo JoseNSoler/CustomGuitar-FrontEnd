@@ -175,7 +175,7 @@ const Login = () => {
                   className="buttonLoginRegister"
                   type="submit"
                   id="buttonLoginRegister">
-                  {isRegistro ? "Registrarse" : "Iniciar sesion"}
+                  {isRegistro ? "Registrarse" : "Iniciar sesión"}
                 </button>
                 <a
                   className="optionsNoLogin"

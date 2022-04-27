@@ -68,10 +68,13 @@ const Products = ({ loading, setGuitarBySpecs }) => {
   };
 
   return (
-    <div className="mainProducts">
-      <h3>Guitarras</h3>
-      <Container className="mainContainer">
-        <Row>
+    <div className="container mainProducts">
+      <div className="title">
+        <h2>Elige las características deseadas...</h2>
+      </div>
+
+      <Container>
+        <Row xs={1} sm={2} md={3} lg={4} className="rowFilters">
           <Col>
             <ComboBoxFilter
               classType={true}
@@ -88,59 +91,52 @@ const Products = ({ loading, setGuitarBySpecs }) => {
               }}
             />
           </Col>
+
+          {typeGuitar.value && (
+            <>
+              <Col>
+                <ComboBoxFilter
+                  name="Modelo"
+                  state={model}
+                  setState={setModel}
+                  type={typeGuitar.value}
+                />
+              </Col>
+              <Col>
+                <ComboBoxFilter
+                  name="Marca"
+                  state={brand}
+                  setState={setBrand}
+                  type={typeGuitar.value}
+                />
+              </Col>
+              <Col>
+                <ComboBoxFilter
+                  name="Número de cuerdas"
+                  state={strings}
+                  setState={setStrings}
+                  type={typeGuitar.value}
+                />
+              </Col>
+              <Col>
+                <ComboBoxFilter
+                  name="Tipo de cuerdas"
+                  state={typeStrings}
+                  setState={setTypeStrings}
+                  type={typeGuitar.value}
+                />
+              </Col>
+              <Col>
+                <ComboBoxFilter
+                  name="Afinación"
+                  state={tuner}
+                  setState={setTuner}
+                  type={typeGuitar.value}
+                />
+              </Col>
+            </>
+          )}
         </Row>
-
-        {typeGuitar.value ? (
-          <Row xs={1} sm={2} md={3} lg={4} className="rowFilters">
-            <Col>
-              <ComboBoxFilter
-                name="Modelo"
-                state={model}
-                setState={setModel}
-                type={typeGuitar.value}
-              />
-            </Col>
-            <Col>
-              <ComboBoxFilter
-                name="Marca"
-                state={brand}
-                setState={setBrand}
-                type={typeGuitar.value}
-              />
-            </Col>
-            <Col>
-              <ComboBoxFilter
-                name="Número de cuerdas"
-                state={strings}
-                setState={setStrings}
-                type={typeGuitar.value}
-              />
-            </Col>
-            <Col>
-              <ComboBoxFilter
-                name="Tipo de cuerdas"
-                state={typeStrings}
-                setState={setTypeStrings}
-                type={typeGuitar.value}
-              />
-            </Col>
-            <Col>
-              <ComboBoxFilter
-                name="Afinación"
-                state={tuner}
-                setState={setTuner}
-                type={typeGuitar.value}
-              />
-            </Col>
-          </Row>
-        ) : (
-          <Row className="none">
-            <Col>
-              <div className="optionsFilter none"></div>
-            </Col>
-          </Row>
-        )}
-
         <Row>
           <Col>
             <Button
@@ -162,19 +158,23 @@ const Products = ({ loading, setGuitarBySpecs }) => {
             </Button>
           </Col>
         </Row>
-
-        <Row className="resultProduct">
-          <Col>
-            {!loading && showresult && <SingleProduct></SingleProduct>}
-            {loading && (
-              <Spinner
-                style={{ position: "absolute", left: "50%", top: "50%" }}
-                animation="border"
-              />
-            )}
-          </Col>
-        </Row>
       </Container>
+      <Row className="resultProduct">
+        <Col>
+          {!loading && showresult && (
+            <>
+              <h2>Resultados</h2>
+              <SingleProduct></SingleProduct>
+            </>
+          )}
+          {loading && (
+            <Spinner
+              style={{ position: "absolute", left: "50%", top: "50%" }}
+              animation="border"
+            />
+          )}
+        </Col>
+      </Row>
     </div>
   );
 };

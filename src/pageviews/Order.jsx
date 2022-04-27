@@ -152,13 +152,13 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
               <OrderInfo order={order}></OrderInfo>
             </Col>
             <Col className="my-auto">
-              <h3>{"Método de pago".toUpperCase()}</h3>
+              <h5>{"Método de pago".toUpperCase()}</h5>
               <p>
                 Por favor realiza una consignacion a nuestra cuenta de ahorros
                 Bancolombia: <br />
                 N° 618 863 775 90
               </p>
-              <h3>{"Comprobante de pago".toUpperCase()}</h3>
+              <h5>{"Comprobante de pago".toUpperCase()}</h5>
               <p>
                 Adjunta el número de comprobante de la transferencia realizada
               </p>
