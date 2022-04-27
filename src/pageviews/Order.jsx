@@ -38,6 +38,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
   }, [auth.currentUser.uid, params.id, params.uid, setOrderById]);
 
   const isValidReceipt = () => {
+    console.log(receipt.match(/^\d+$/) != null)
     if (receipt === "") {
       setErrorReceipt({
         value: true,
@@ -45,12 +46,28 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
       });
       return false;
     }
+    if(receipt.match(/^\d+$/) == null){
+      setErrorReceipt({
+        value: true,
+        info: "El comprobante de pago debe ser numeros unicamente",
+      });
+      return false;
+    }
+    if(receipt.length != 10){
+      setErrorReceipt({
+        value: true,
+        info: "El numero comprobante debe tener solo 10 digitos",
+      });
+      return false;
+    }
     return true;
   };
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (isValidReceipt()) {
       setValidated(true);
-      updateOrderById(params.id, auth.currentUser.uid, receipt);
+
+      //updateOrderById(params.id, auth.currentUser.uid, receipt);
     }
   };
 
@@ -97,8 +114,8 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
           </Row>
           <div
             className="buttonDiv"
-            onClick={() => {
-              handleSubmit();
+            onClick={(event) => {
+              handleSubmit(event);
             }}>
             <Button id="sendReceipt" type="submit" className="button">
               Enviar
