@@ -22,18 +22,18 @@ export const guitarServices = () => {
     });
   };
 
-  const createOrderById = (UID, luthierBool, product) => {
+  const createOrderById = (uid, luthierBool, product) => {
     return axios({
       method: "POST",
-      url: `orden/crear/${luthierBool.toString()}/${UID}`,
+      url: `orden/crear/${luthierBool.toString()}/${uid}`,
       data: product,
     });
   };
 
-  const updateReceiptOrder = (id, uID, receipt) => {
+  const updateReceiptOrder = (id, uid, receipt) => {
     return axios({
       method: "GET",
-      url: `orden/actualizar/${id}/${uID}/${receipt}`,
+      url: `orden/actualizar/${id}/${uid}/${receipt}`,
     });
   };
 

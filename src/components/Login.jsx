@@ -79,6 +79,7 @@ const Login = () => {
     } else {
       login();
     }
+    console.log(user.email);
   };
 
   const login = React.useCallback(() => {
@@ -192,14 +193,13 @@ const Login = () => {
                   id="buttonLoginRegister">
                   {isRegistro ? "Registrarse" : "Iniciar sesión"}
                 </button>
-                <button
-                  style={{ border: "0px" }}
+                <a
                   className="optionsNoLogin"
                   onClick={() => setIsRegistro(!isRegistro)}
                   type="button"
                   id="optionRegisterLogin">
                   {isRegistro ? "Ya estoy registrado" : "No tengo una cuenta"}
-                </button>
+                </a>
               </div>
             </form>
           </div>

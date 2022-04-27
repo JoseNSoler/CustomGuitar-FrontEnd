@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { createOrderByUID as actionCreateOrderByUID } from "../actions/guitarActions";
+import { createOrderByuid as actionCreateOrderByuid } from "../actions/guitarActions";
 import { useNavigate } from "react-router-dom";
 import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 
 const auth = getAuth(fireApp);
 
-const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
+const SingleProduct = ({ order, guitarGeneral, createOrderByuid }) => {
   const [luthier, setLuthier] = useState(false);
 
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByUID }) => {
     event.preventDefault();
     event.stopPropagation();
 
-    createOrderByUID(auth.currentUser.uid, luthier, product);
+    createOrderByuid(auth.currentUser.uid, luthier, product);
   };
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  createOrderByUID: actionCreateOrderByUID,
+  createOrderByuid: actionCreateOrderByuid,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

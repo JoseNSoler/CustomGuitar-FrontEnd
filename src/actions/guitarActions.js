@@ -67,13 +67,12 @@ export const setOrderById = (id) => async (dispatch) => {
   }
 };
 
-export const createOrderByUID =
-  (UID, luthierBool, product) => async (dispatch) => {
+export const createOrderByuid =
+  (uid, luthierBool, product) => async (dispatch) => {
     dispatch(loading());
-    console.log("action: " + UID);
     try {
       await guitarServices
-        .createOrderById(UID, luthierBool, product)
+        .createOrderById(uid, luthierBool, product)
         .then(function (response) {
           dispatch(
             createOrder({
@@ -86,11 +85,11 @@ export const createOrderByUID =
     }
   };
 
-export const updateOrderById = (id, uID, receipt) => async (dispatch) => {
+export const updateOrderById = (id, uid, receipt) => async (dispatch) => {
   dispatch(loading());
   try {
     await guitarServices
-      .updateReceiptOrder(id, uID, receipt)
+      .updateReceiptOrder(id, uid, receipt)
       .then(function (response) {
         dispatch(
           setOrder({
