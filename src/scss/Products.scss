@@ -29,6 +29,7 @@ select {
 }
 
 .mainProducts {
+
   .title {
     align-items: left;
     text-align: left;
@@ -101,12 +102,13 @@ select {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    padding: 0;
 
     .rowFilters {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 2rem;
+      padding: 0;
       width: 100%;
 
       .col {

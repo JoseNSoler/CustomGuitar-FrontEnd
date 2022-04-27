@@ -145,7 +145,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             <br />
           </div>
           <Row xs={1} lg={2} className="mainOrder">
-            <Col>
+            <Col syle={{padding: 0}}>
               <OrderInfo order={order}></OrderInfo>
             </Col>
             <Col className="my-auto">

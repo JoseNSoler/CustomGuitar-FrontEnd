@@ -1,15 +1,21 @@
 .order {
-    .header{
-        text-align: center;        margin: 4% 3%;
-        p{
+    height: auto !important;
+    width: 100% !important;
+    margin-bottom: 7% !important;
+    padding: 0 3%;
+    .header {
+        text-align: center;
+        margin: 4% 3%;
+
+        p {
             margin: 0;
         }
     }
 
-    .infoPayment{
+    .infoPayment {
         margin-top: 3rem;
         margin-bottom: 3rem;
-    
+
     }
 
     .mainOrder {
@@ -18,21 +24,29 @@
         align-items: center;
         justify-content: center;
 
-        .errorReceipt{
-            padding-top: .5rem!important;
-            padding-bottom: .5rem!important;
-            margin-bottom: .5rem!important;
-            background-color: #ff8e98!important;
-            color:rgb(0, 0, 0);
-            border: #a30000 3px solid!important;
+        .my-auto{
+            margin-top: 20px !important;
+            h5{
+                text-align: center;
+            }
+            
         }
 
-        .successReceipt{
-            padding-top: .5rem!important;
-            padding-bottom: .5rem!important;
-            margin-bottom: .5rem!important;
-            color:rgb(0, 0, 0);
-            border: #003d03 3px solid!important;
+        .errorReceipt {
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important;
+            margin-bottom: .5rem !important;
+            background-color: #ff8e98 !important;
+            color: rgb(0, 0, 0);
+            border: #a30000 3px solid !important;
+        }
+
+        .successReceipt {
+            padding-top: .5rem !important;
+            padding-bottom: .5rem !important;
+            margin-bottom: .5rem !important;
+            color: rgb(0, 0, 0);
+            border: #003d03 3px solid !important;
         }
 
         .buttonsOrder {
