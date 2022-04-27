@@ -19,6 +19,7 @@ import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 
 import "../scss/Order.scss";
+import FormUpdateFile from "../components/FormUpdateFile.jsx";
 
 function Order({ loading, error, order, setOrderById, updateOrderById }) {
   const params = useParams();
@@ -46,14 +47,14 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
       });
       return false;
     }
-    if(receipt.match(/^\d+$/) == null){
+    if (receipt.match(/^\d+$/) == null) {
       setErrorReceipt({
         value: true,
         info: "El comprobante de pago debe ser numeros unicamente",
       });
       return false;
     }
-    if(receipt.length != 10){
+    if (receipt.length != 10) {
       setErrorReceipt({
         value: true,
         info: "El numero comprobante debe tener solo 10 digitos",
@@ -89,12 +90,40 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     }
   };
 
+
+  const paymentNumber = "metodo de pago por Nro comprobante"
+  const paymentURL = "Metodo de pago por anexo"
+  const [payment, setPayment] = useState(paymentNumber)
+
   const formPayment = () => {
+
+
+    const changeMethod = () => {
+      switch (payment) {
+        case paymentNumber:
+          setPayment(paymentURL)
+          break;
+        case paymentURL:
+          setPayment(paymentNumber)
+          break;
+        default:
+          break;
+      }
+    }
+
     return (
       <>
         {renderAlerts()}
+        <Form>
+          <Form.Check
+            type="switch"
+            id="custom-switch"
+            label={payment}
+            onChange={() => changeMethod()}
+          />
+        </Form>
         <Form noValidate validated={validated} className="buttonsOrder">
-          <Row>
+          {(payment == paymentNumber) ? (
             <Form.Group as={Col} controlId="inputReceipt">
               <Form.Control
                 required
@@ -111,7 +140,14 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
                 value={receipt}
               />
             </Form.Group>
-          </Row>
+          ) : (
+            <div>
+              <Row>
+                <FormUpdateFile></FormUpdateFile>
+              </Row>
+
+            </div>
+          )}
           <div
             className="buttonDiv"
             onClick={(event) => {
@@ -125,6 +161,11 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
       </>
     );
   };
+
+  /*
+  
+
+  */
 
   const renderOrder = () => {
     if (accessDenied) {
@@ -149,11 +190,10 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
           <div className="header">
             <h2>{"¡Felicidades!"}</h2>
             <p>
-              {`Estamos a un paso de que obtengas la guitarra de tus sueños${
-                order.carrito[0].luthier.seleccionado
-                  ? " testeada y certificada por el mejor luthier de América."
-                  : "."
-              }`}
+              {`Estamos a un paso de que obtengas la guitarra de tus sueños${order.carrito[0].luthier.seleccionado
+                ? " testeada y certificada por el mejor luthier de América."
+                : "."
+                }`}
               <br />
               {order.carrito[0].luthier.seleccionado
                 ? null
@@ -162,7 +202,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             <br />
           </div>
           <Row xs={1} lg={2} className="mainOrder">
-            <Col syle={{padding: 0}}>
+            <Col syle={{ padding: 0 }}>
               <OrderInfo order={order}></OrderInfo>
             </Col>
             <Col className="my-auto">
