@@ -38,7 +38,6 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
   }, [auth.currentUser.uid, params.id, params.uid, setOrderById]);
 
   const isValidReceipt = () => {
-    console.log(receipt.match(/^\d+$/) != null)
     if (receipt === "") {
       setErrorReceipt({
         value: true,
@@ -46,17 +45,17 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
       });
       return false;
     }
-    if(receipt.match(/^\d+$/) == null){
+    if (receipt.match(/^\d+$/) === null) {
       setErrorReceipt({
         value: true,
-        info: "El comprobante de pago debe ser numeros unicamente",
+        info: "El comprobante de pago debe ser números únicamente",
       });
       return false;
     }
-    if(receipt.length != 10){
+    if (receipt.length !== 10) {
       setErrorReceipt({
         value: true,
-        info: "El numero comprobante debe tener solo 10 digitos",
+        info: "El número de comprobante debe tener únicamente 10 dígitos",
       });
       return false;
     }
@@ -66,8 +65,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     event.preventDefault();
     if (isValidReceipt()) {
       setValidated(true);
-
-      //updateOrderById(params.id, auth.currentUser.uid, receipt);
+      updateOrderById(params.id, auth.currentUser.uid, receipt);
     }
   };
 
@@ -83,7 +81,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     if (order.comprobante) {
       return (
         <Alert className="successReceipt" variant="success">
-          Comprobante No. {order.comprobante} enviado con éxito
+          Comprobante No. {order.comprobante} adjuntado con éxito
         </Alert>
       );
     }
@@ -117,7 +115,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             onClick={(event) => {
               handleSubmit(event);
             }}>
-            <Button id="sendReceipt" type="submit" className="button">
+            <Button id="sendReceipt" className="button">
               Enviar
             </Button>
           </div>
@@ -147,7 +145,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
       return (
         <Container>
           <div className="header">
-            <h2>{"¡Felicidades!"}</h2>
+            <h2>{`¡Felicidades, ${auth.currentUser.displayName}!`}</h2>
             <p>
               {`Estamos a un paso de que obtengas la guitarra de tus sueños${
                 order.carrito[0].luthier.seleccionado
@@ -162,7 +160,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             <br />
           </div>
           <Row xs={1} lg={2} className="mainOrder">
-            <Col syle={{padding: 0}}>
+            <Col syle={{ padding: 0 }}>
               <OrderInfo order={order}></OrderInfo>
             </Col>
             <Col className="my-auto">
