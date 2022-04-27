@@ -112,17 +112,6 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     );
   };
 
-  /* Validacion para archivos adjuntos
-  <Form.Group className="mb-3">
-          <Form.Check
-            required
-            label="Reconozco subir informacion valida"
-            feedback="Debe aceptar que esta de acuerdo con el comprobante de pago final y posterior pago"
-            feedbackType="invalid"
-          />
-        </Form.Group>
-  */
-
   const renderOrder = () => {
     if (accessDenied) {
       return <h1>401 Unauthorized</h1>;

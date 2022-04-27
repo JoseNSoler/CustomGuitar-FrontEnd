@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { createOrderByUID } from "../actions/guitarActions";
+import { createOrderByUID as actionCreateOrderByUID } from "../actions/guitarActions";
 import { useNavigate } from "react-router-dom";
 import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
@@ -127,7 +127,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  createOrderByUID,
+  createOrderByUID: actionCreateOrderByUID,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

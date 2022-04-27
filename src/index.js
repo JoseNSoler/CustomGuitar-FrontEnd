@@ -13,6 +13,7 @@ import reducer from "./reducers/rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const middleware = [thunk];
+
 if (process.env.NODE_ENV !== "production") {
   middleware.push(createLogger());
 }

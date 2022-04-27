@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button, Spinner, Container, Row, Col } from "react-bootstrap";
 import "../scss/Products.scss";
@@ -6,11 +6,6 @@ import "../scss/SingleProduct.scss";
 import { setGuitarBySpecs as actionSetGuitarBySpecs } from "../actions/guitarActions";
 import ComboBoxFilter from "../components/ComboBoxFilter";
 import SingleProduct from "../components/SingleProduct";
-import { useNavigate } from "react-router-dom";
-import fireApp from "../firebase/firebase";
-import { getAuth } from "firebase/auth";
-
-const auth = getAuth(fireApp);
 
 const Products = ({ loading, setGuitarBySpecs }) => {
   const [typeGuitar, setTypeGuitar] = useState({
@@ -61,9 +56,6 @@ const Products = ({ loading, setGuitarBySpecs }) => {
   });
   const [showresult, setShowResult] = useState(false);
 
-  const navigate = useNavigate();
-  const [user, setUser] = React.useState(null);
-
   const readyForSearch = () => {
     return (
       typeGuitar.value &&
@@ -74,14 +66,6 @@ const Products = ({ loading, setGuitarBySpecs }) => {
       tuner.value
     );
   };
-
-  useEffect(() => {
-    if (auth.currentUser) {
-      setUser(auth.currentUser);
-    } else {
-      navigate("/login");
-    }
-  }, [navigate, user]);
 
   return (
     <div className="mainProducts">

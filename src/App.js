@@ -37,10 +37,30 @@ function App() {
       <div className="App">
         <Navbar firebaseUser={firebaseUser} />
         <Routes>
-          <Route path="/" element={<Navigate to="/products" />} />
-          <Route path="/login" element={<LoginRegisterView />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/:uid/order/:id" element={<Order />} />
+          <Route
+            path="/"
+            element={
+              firebaseUser ? (
+                <Navigate to="/products" />
+              ) : (
+                <Navigate to={"/login"} />
+              )
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              firebaseUser ? <Navigate to={"/"} /> : <LoginRegisterView />
+            }
+          />
+          <Route
+            path="/products"
+            element={firebaseUser ? <Products /> : <Navigate to={"/login"} />}
+          />
+          <Route
+            path="/:uid/order/:id"
+            element={firebaseUser ? <Order /> : <Navigate to={"/login"} />}
+          />
           <Route path="*" element={<h1>404 NotFoundPage</h1>} />
         </Routes>
         <Footer></Footer>
