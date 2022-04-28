@@ -33,6 +33,16 @@ function App() {
     });
   }, []);
 
+  const boolLogin = firebaseUser ? <Navigate to={"/"} /> : <LoginRegisterView />
+  const boolRelative = firebaseUser ? (
+    <Navigate to="/products" />
+  ) : (
+    <Navigate to={"/login"} />
+  )
+
+  const boolProducts = firebaseUser ? <Products /> : <Navigate to={"/login"} />
+  const boolOrder = firebaseUser ? <Order /> : <Navigate to={"/login"} />
+
   return firebaseUser !== false ? (
     <Router>
       <div className="App">
@@ -41,26 +51,22 @@ function App() {
           <Route
             path="/"
             element={
-              firebaseUser ? (
-                <Navigate to="/products" />
-              ) : (
-                <Navigate to={"/login"} />
-              )
+              boolRelative
             }
           />
           <Route
             path="/login"
             element={
-              firebaseUser ? <Navigate to={"/"} /> : <LoginRegisterView />
+              boolLogin
             }
           />
           <Route
             path="/products"
-            element={firebaseUser ? <Products /> : <Navigate to={"/login"} />}
+            element={boolProducts}
           />
           <Route
             path="/:uid/order/:id"
-            element={firebaseUser ? <Order /> : <Navigate to={"/login"} />}
+            element={boolOrder}
           />
           <Route path="*" element={<h1>404 NotFoundPage</h1>} />
         </Routes>
