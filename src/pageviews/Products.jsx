@@ -68,7 +68,9 @@ const Products = ({ loading, setGuitarBySpecs }) => {
   };
 
   return (
-    <div className="container mainProducts">
+    <div className="container mainProducts" style={{
+      marginTop: "3.5rem"
+    }}>
       <div className="title">
         <h2>Elige las características deseadas...</h2>
       </div>

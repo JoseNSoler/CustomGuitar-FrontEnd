@@ -5,7 +5,9 @@ import '../scss/Login.scss'
 
 export default function LoginRegisterView() {
   return (
-    <Container className='mainLogin'>
+    <Container className='mainLogin' style={{
+      marginTop: "3.5rem"
+    }}>
         <Row xs={1} md={2}>
             <Col className='Logo'>
                 <img

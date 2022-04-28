@@ -1,3 +1,39 @@
 .navBarGuitar{
     background-color: black !important;
+    position: fixed !important;
+    width: 100%;
+    top: 0;
+    height: 3.5rem;
+
+    .container{
+        background-color: black;
+
+        .navbar-collapse,
+        .collapse{
+            background-color: black;
+            div{
+                background-color: black;
+                margin-top: .5%;
+                a, button{
+                    margin: .5% 0;
+                    background-color: rgb(66, 66, 66);
+                }
+            }
+        }
+
+        .navbar-toggler, .collapsed{
+            padding: .5%;
+            border: solid white 2px;
+            span{
+                
+                background-color: black;
+                background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 16h22M4 23h22'/></svg>")
+            }
+        }
+        a{
+            background-color: black;
+            color: white;
+        }
+    }
 }
+

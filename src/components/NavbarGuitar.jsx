@@ -2,10 +2,12 @@ import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
+import { Navbar,Container, Nav } from "react-bootstrap";
+
 
 const auth = getAuth(fireApp);
 
-const Navbar = (props) => {
+const NavbarGuitar = (props) => {
   const navigate = useNavigate();
 
   const cerrarSesion = () => {
@@ -15,18 +17,18 @@ const Navbar = (props) => {
   };
 
   return (
-    <div
-      className="navbar navbar-dark navBarGuitar"
-      style={{ padding: 0, height: "3.2rem", backgroundColor: "black" }}>
-      <div className="container" style={{ backgroundColor: "black" }}>
-        <Link
-          className="navbar-brand "
-          to="/"
-          style={{ backgroundColor: "black" }}>
-          Guitarras Custom
-        </Link>
-        <div style={{ backgroundColor: "black" }}>
-          <div className="d-flex" style={{ backgroundColor: "black" }}>
+    <Navbar expand="md" className="navBarGuitar">
+      <Container>
+        <Navbar.Brand href="#home">Guitarras Custom</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto" style={{
+            display: "flex",
+            justifyContent: "right",
+            alignItems: "center",
+            marginRight: "0px",
+            width: "100%"
+          }}>
             {props.firebaseUser !== null ? (
               <>
                 <NavLink className="btn btn-dark mr-2" to="/products">
@@ -45,11 +47,15 @@ const Navbar = (props) => {
                 </NavLink>
               </>
             )}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavbarGuitar;
+
+
+
+

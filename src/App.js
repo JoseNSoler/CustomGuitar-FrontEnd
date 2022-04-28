@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import NavbarGuitar from "./components/NavbarGuitar";
 import fireApp from "./firebase/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import LoginRegisterView from "./pageviews/LoginRegisterView";
@@ -36,7 +36,7 @@ function App() {
   return firebaseUser !== false ? (
     <Router>
       <div className="App">
-        <Navbar firebaseUser={firebaseUser} />
+        <NavbarGuitar firebaseUser={firebaseUser} />
         <Routes>
           <Route
             path="/"
