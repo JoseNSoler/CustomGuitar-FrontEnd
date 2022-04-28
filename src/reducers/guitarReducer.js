@@ -7,7 +7,7 @@ const initialState = {
   order: { created: false },
 };
 
-export default function guitarReducer(action, state = initialState) {
+export default function guitarReducer(state = initialState, action) {
   switch (action.type) {
     case typeName.LOADING:
       return { ...state, loading: true };
