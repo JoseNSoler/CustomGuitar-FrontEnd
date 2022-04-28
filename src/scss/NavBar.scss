@@ -1,3 +1,7 @@
+.navbar-brand:hover{
+    color: rgb(4, 113, 163);
+}
+
 .navBarGuitar{
     background-color: black !important;
     position: fixed !important;
@@ -9,6 +13,10 @@
     .container{
         background-color: black;
 
+        .navbar-light, .navbar-brand:focus, .navbar-light, .navbar-brand:hover{
+            color: rgb(4, 113, 163);
+        }
+
         .navbar-collapse,
         .collapse{
             background-color: black;
@@ -17,7 +25,10 @@
                 margin-top: .5%;
 
                 a:hover{
-                    color: wheat;
+                    color: rgb(4, 113, 163);
+                }
+                .navbar-brand:hover{
+                    color: rgb(4, 113, 163);
                 }
                 a, button{
                     margin: .5% 0;
