@@ -37,11 +37,22 @@ export const guitarServices = () => {
     });
   };
 
+  const updateReceiptOrderURL = (id, uID, url) => {
+    return axios({
+      method: "PUT",
+      url: `orden/actualizar/${id}/${uID}`,
+      data: {
+        comprobante: url
+      }
+    });
+  };
+
   return {
     getGuitarBySpecs,
     getOrderById,
     createOrderById,
     updateReceiptOrder,
+    updateReceiptOrderURL,
   };
 };
 

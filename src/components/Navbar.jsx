@@ -35,7 +35,7 @@ const Navbar = (props) => {
                 <button
                   className="btn btn-dark mr-2"
                   onClick={() => cerrarSesion()}>
-                  Cerrar Sesion
+                  Cerrar Sesión
                 </button>
               </>
             ) : (

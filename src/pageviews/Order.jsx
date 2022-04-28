@@ -13,12 +13,14 @@ import { useParams } from "react-router-dom";
 import {
   setOrderById as actionSetOrderById,
   updateOrderById as actionUpdateOrderById,
+  updateOrderByIdWithURL
 } from "../actions/guitarActions.js";
 import OrderInfo from "../components/OrderInfo.jsx";
 import fireApp from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 
 import "../scss/Order.scss";
+import FormUpdateFile from "../components/FormUpdateFile.jsx";
 
 function Order({ loading, error, order, setOrderById, updateOrderById }) {
   const params = useParams();
@@ -30,6 +32,10 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     value: false,
     info: "",
   });
+
+  const paymentNumber = "metodo de pago por Nro comprobante"
+  const paymentURL = "Metodo de pago por anexo"
+  const [payment, setPayment] = useState(paymentNumber)
 
   useEffect(() => {
     params.uid !== auth.currentUser.uid
@@ -64,8 +70,17 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isValidReceipt()) {
+
       setValidated(true);
-      updateOrderById(params.id, auth.currentUser.uid, receipt);
+
+      if (payment === paymentNumber) {
+        updateOrderById(params.id, auth.currentUser.uid, receipt);
+      }/*
+      if (payment === paymentURL) {
+        console.log("testettrte")
+        updateOrderByIdWithURL(params.id, auth.currentUser.uid, receipt)
+      }*/
+
     }
   };
 
@@ -88,11 +103,31 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
   };
 
   const formPayment = () => {
+    const changeMethod = () => {
+      switch (payment) {
+        case paymentNumber:
+          setPayment(paymentURL)
+          break;
+        case paymentURL:
+          setPayment(paymentNumber)
+          break;
+        default:
+          break;
+      }
+    }
     return (
       <>
         {renderAlerts()}
+        <Form>
+          <Form.Check
+            type="switch"
+            id="custom-switch"
+            label={payment}
+            onChange={() => changeMethod()}
+          />
+        </Form>
         <Form noValidate validated={validated} className="buttonsOrder">
-          <Row>
+          {(payment === paymentNumber) ? (
             <Form.Group as={Col} controlId="inputReceipt">
               <Form.Control
                 required
@@ -109,13 +144,20 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
                 value={receipt}
               />
             </Form.Group>
-          </Row>
+          ) : (
+            <div>
+              <Row>
+                <FormUpdateFile></FormUpdateFile>
+              </Row>
+
+            </div>
+          )}
           <div
             className="buttonDiv"
             onClick={(event) => {
               handleSubmit(event);
             }}>
-            <Button id="sendReceipt" className="button">
+            <Button id="sendReceipt" type="submit" className="button">
               Enviar
             </Button>
           </div>
@@ -147,11 +189,10 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
           <div className="header">
             <h2>{`¡Felicidades, ${auth.currentUser.displayName}!`}</h2>
             <p>
-              {`Estamos a un paso de que obtengas la guitarra de tus sueños${
-                order.carrito[0].luthier.seleccionado
-                  ? " testeada y certificada por el mejor luthier de América."
-                  : "."
-              }`}
+              {`Estamos a un paso de que obtengas la guitarra de tus sueños${order.carrito[0].luthier.seleccionado
+                ? " testeada y certificada por el mejor luthier de América."
+                : "."
+                }`}
               <br />
               {order.carrito[0].luthier.seleccionado
                 ? null

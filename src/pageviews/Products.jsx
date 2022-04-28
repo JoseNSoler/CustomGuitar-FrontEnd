@@ -25,9 +25,9 @@ const Products = ({ loading, setGuitarBySpecs }) => {
   const [brand, setBrand] = useState({
     value: "",
     options: {
-      Acústica: ["Fender", "Gybson", "Yamaha"],
-      Electroacústica: ["Fender", "Gybson", "Yamaha"],
-      Eléctrica: ["Fender", "Gybson", "Yamaha"],
+      Acústica: ["Fender", "Gibson", "Yamaha"],
+      Electroacústica: ["Fender", "Gibson", "Yamaha"],
+      Eléctrica: ["Fender", "Gibson", "Yamaha"],
     },
   });
   const [strings, setStrings] = useState({
