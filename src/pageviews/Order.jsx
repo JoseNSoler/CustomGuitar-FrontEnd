@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import {
   setOrderById as actionSetOrderById,
   updateOrderById as actionUpdateOrderById,
+  updateOrderByIdWithURL
 } from "../actions/guitarActions.js";
 import OrderInfo from "../components/OrderInfo.jsx";
 import fireApp from "../firebase/firebase";
@@ -54,7 +55,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
       });
       return false;
     }
-    if (receipt.length != 10) {
+    if (receipt.length !== 10) {
       setErrorReceipt({
         value: true,
         info: "El numero comprobante debe tener solo 10 digitos",
@@ -63,12 +64,23 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     }
     return true;
   };
+
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isValidReceipt()) {
+
       setValidated(true);
 
-      //updateOrderById(params.id, auth.currentUser.uid, receipt);
+      if(payment === paymentNumber){
+        updateOrderById(params.id, auth.currentUser.uid, receipt);
+      }
+      if(payment === paymentURL){
+        console.log("testettrte")
+        updateOrderByIdWithURL(params.id, auth.currentUser.uid, receipt)
+      }
+
+      //
     }
   };
 
@@ -123,7 +135,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
           />
         </Form>
         <Form noValidate validated={validated} className="buttonsOrder">
-          {(payment == paymentNumber) ? (
+          {(payment === paymentNumber) ? (
             <Form.Group as={Col} controlId="inputReceipt">
               <Form.Control
                 required

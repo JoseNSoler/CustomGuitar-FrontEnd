@@ -102,3 +102,21 @@ export const updateOrderById = (id, uID, receipt) => async (dispatch) => {
     dispatch(loadedFailure());
   }
 };
+
+
+export const updateOrderByIdWithURL = (id, uID, url) => async (dispatch) => {
+  dispatch(loading());
+  try {
+    await guitarServices
+      .updateReceiptOrderURL(id, uID, url)
+      .then(function (response) {
+        dispatch(
+          setOrder({
+            order: response.data,
+          })
+        );
+      });
+  } catch (error) {
+    dispatch(loadedFailure());
+  }
+};
