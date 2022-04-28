@@ -13,7 +13,6 @@ import { useParams } from "react-router-dom";
 import {
   setOrderById as actionSetOrderById,
   updateOrderById as actionUpdateOrderById,
-  updateOrderByIdWithURL
 } from "../actions/guitarActions.js";
 import OrderInfo from "../components/OrderInfo.jsx";
 import fireApp from "../firebase/firebase";
@@ -75,12 +74,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
 
       if (payment === paymentNumber) {
         updateOrderById(params.id, auth.currentUser.uid, receipt);
-      }/*
-      if (payment === paymentURL) {
-        console.log("testettrte")
-        updateOrderByIdWithURL(params.id, auth.currentUser.uid, receipt)
-      }*/
-
+      }
     }
   };
 
@@ -96,7 +90,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     if (order.comprobante) {
       return (
         <Alert className="successReceipt" variant="success">
-          Comprobante No. {order.comprobante} adjuntado con éxito
+          Comprobante ={order.comprobante} adjuntado con éxito a la orden
         </Alert>
       );
     }
@@ -123,7 +117,11 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             type="switch"
             id="custom-switch"
             label={payment}
-            onChange={() => changeMethod()}
+            onChange={() => {
+              setErrorReceipt({ info: "" })
+              changeMethod()
+
+            }}
           />
         </Form>
         <Form noValidate validated={validated} className="buttonsOrder">
@@ -152,15 +150,19 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
 
             </div>
           )}
-          <div
-            className="buttonDiv"
-            onClick={(event) => {
-              handleSubmit(event);
-            }}>
-            <Button id="sendReceipt" type="submit" className="button">
-              Enviar
-            </Button>
-          </div>
+          {!order.comprobante && (
+            <div
+              className="buttonDiv"
+              onClick={(event) => {
+                handleSubmit(event);
+              }}>
+              <Button id="sendReceipt" type="submit" className="button">
+                Enviar
+              </Button>
+            </div>
+
+          )}
+
         </Form>
       </>
     );
@@ -196,7 +198,7 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
               <br />
               {order.carrito[0].luthier.seleccionado
                 ? null
-                : "Lo invitamos a que use el servicio exclusivo de nuestro Luthier."}
+                : "Lo invitamos a que use el servicio exclusivo de nuestro Luthier para su proxima compra."}
             </p>
             <br />
           </div>

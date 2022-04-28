@@ -90,7 +90,7 @@ export const updateOrderById = (id, uid, receipt) => async (dispatch) => {
   try {
     await guitarServices
       .updateReceiptOrder(id, uid, receipt)
-      .then((response) => {
+      .then(function (response) {
         dispatch(
           setOrder({
             order: response.data,

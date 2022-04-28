@@ -6,6 +6,8 @@ const OrderInfo = ({ order }) => {
   function hasLuthier() {
     return order.carrito.filter((cart) => cart.luthier.seleccionado).length;
   }
+  let formatNumber = Intl.NumberFormat('es-CO');
+
   return (
     <div>
       <Card className="orderInfo" id="cardOrderInfoID">
@@ -51,14 +53,14 @@ const OrderInfo = ({ order }) => {
                   cart.guitarra.numCuerdas
                 } cuerdas de ${cart.guitarra.tipoCuerda.toLowerCase()}.`,
                 cantidad: cart.cantidad,
-                precioUnitario: `$${cart.guitarra.precio}`,
-                precioCertificado: `$${cart.luthier.precio}`,
-                precioTotal: `$${cart.total}`,
+                precioUnitario: `$${formatNumber.format(cart.guitarra.precio)}`,
+                precioCertificado: `$${formatNumber.format(cart.luthier.precio)}`,
+                precioTotal: `$${formatNumber.format(cart.total)}`,
               };
             })}
           />
           <Card.Text>
-            <b id="totalCostOrder">Costo total</b>: ${order.total}
+            <b id="totalCostOrder">Costo total</b>: ${formatNumber.format(order.total)}
           </Card.Text>
         </Card.Body>
       </Card>

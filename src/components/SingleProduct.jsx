@@ -25,6 +25,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByuid }) => {
       navigate(`/${auth.currentUser.uid}/order/${order.id}`);
     }
   }, [navigate, order.created, order.id]);
+  let formatNumber = Intl.NumberFormat('es-CO');
 
   if (guitarGeneral.length > 0) {
     return (
@@ -43,7 +44,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByuid }) => {
                 </div>
 
                 <div className="price">
-                  Precio <p className="priceAlone">{`$${product.precio}`}</p>
+                  Precio <p className="priceAlone">{`$${formatNumber.format(product.precio)}`}</p>
                 </div>
               </Col>
               <Col className="guitarInfoLuthier" id="guitarInfoLuthierID">
@@ -89,7 +90,7 @@ const SingleProduct = ({ order, guitarGeneral, createOrderByuid }) => {
                       }}
                     />
                     <p className="priceLuthAlone" id="productPriceID">
-                      $250000
+                      ${formatNumber.format(250000)}
                     </p>
                   </div>
 

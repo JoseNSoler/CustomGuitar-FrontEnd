@@ -6,17 +6,17 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
-    updateOrderById as actionUpdateOrderById,
     updateOrderByIdWithURL as actionUpdateOrderByIdWithURL
 } from "../actions/guitarActions.js";
 import { useParams } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import fireApp from "../firebase/firebase";
+import "../scss/Order.scss";
 
 const apikey = "Aj7zhAGroTiOWBnlECxHyz";
 const client = filestack.init(apikey);
 
-const FormUpdateFile = ({updateOrderById, updateOrderByIdWithURL}) => {
+const FormUpdateFile = ({ updateOrderByIdWithURL }) => {
 
     const [formUpload, setformUpload] = useState(false)
     const params = useParams();
@@ -28,7 +28,7 @@ const FormUpdateFile = ({updateOrderById, updateOrderByIdWithURL}) => {
         onUploadDone: (res) => {
             console.log(auth.currentUser.uid)
             updateOrderByIdWithURL(params.id, auth.currentUser.uid, res.filesUploaded[0].url);
-            
+
         },
         onClose: () => setformUpload(false)
     };
@@ -39,11 +39,12 @@ const FormUpdateFile = ({updateOrderById, updateOrderByIdWithURL}) => {
     }
 
     return (
-        <div>
+        <div style={{ marginTop: "4%" }}>
             <Button onClick={() => { setformUpload(true) }}
                 style={{
                     marginBottom: "20px"
-                }}>
+                }}
+                className="buttonURL">
                 Buscar comprobante en computador
             </Button>
         </div>
@@ -57,7 +58,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    updateOrderById: actionUpdateOrderById,
     updateOrderByIdWithURL: actionUpdateOrderByIdWithURL
 };
 
