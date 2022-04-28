@@ -158,7 +158,7 @@
                 .button {
 
                     width: 100%;
-                    height: 5vh;
+                    height: 100%;
                     background-color: #324B6A;
                     border: black 3px solid;
                     box-shadow: black 3px 3px;
@@ -231,9 +231,9 @@
     }
 }
 
-.buttonURL {
+.buttonURL {  
+    height: 100%;
     width: 100%;
-    height: 6.7vh;
     background-color: #324B6A !important;
     border: black 3px solid !important;
     box-shadow: black 3px 3px;

@@ -4,6 +4,7 @@
     width: 100%;
     top: 0;
     height: 3.5rem;
+    z-index: 1 !important;
 
     .container{
         background-color: black;
@@ -14,6 +15,10 @@
             div{
                 background-color: black;
                 margin-top: .5%;
+
+                a:hover{
+                    color: wheat;
+                }
                 a, button{
                     margin: .5% 0;
                     background-color: rgb(66, 66, 66);

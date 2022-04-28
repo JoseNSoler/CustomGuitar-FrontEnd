@@ -22,6 +22,7 @@ import "../scss/Order.scss";
 import FormUpdateFile from "../components/FormUpdateFile.jsx";
 
 function Order({ loading, error, order, setOrderById, updateOrderById }) {
+
   const params = useParams();
   const auth = getAuth(fireApp);
   const [accessDenied, setAccessDenied] = useState(false);
@@ -32,9 +33,11 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
     info: "",
   });
 
-  const paymentNumber = "metodo de pago por Nro comprobante"
-  const paymentURL = "Metodo de pago por anexo"
+  const paymentNumber = "Método de pago por Nro comprobante"
+  const paymentURL = "Método de pago por anexo"
   const [payment, setPayment] = useState(paymentNumber)
+
+
 
   useEffect(() => {
     params.uid !== auth.currentUser.uid
@@ -209,13 +212,13 @@ function Order({ loading, error, order, setOrderById, updateOrderById }) {
             <Col className="my-auto">
               <h5>{"Método de pago".toUpperCase()}</h5>
               <p>
-                Por favor realiza una consignacion a nuestra cuenta de ahorros
+                Por favor realiza una consignacion a nuestra cuenta de ahorros.
                 Bancolombia: <br />
                 N° 618 863 775 90
               </p>
               <h5>{"Comprobante de pago".toUpperCase()}</h5>
               <p>
-                Adjunta el número de comprobante de la transferencia realizada
+                Adjunta comprobante de la transferencia realizada.
               </p>
               {formPayment()}
             </Col>

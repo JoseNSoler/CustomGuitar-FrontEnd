@@ -105,6 +105,7 @@ const Login = () => {
       await addDoc(collection(db, "usuarios"), {
         email: res.user.email,
         uid: res.user.uid,
+        displayName: username
       });
       updateProfile(auth.currentUser, {
         displayName: username,
